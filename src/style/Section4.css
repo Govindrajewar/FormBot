@@ -1,0 +1,44 @@
+.section4 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 100px;
+}
+
+.section4 img {
+  height: 400px;
+  width: 600px;
+  margin: 30px 0;
+}
+
+.section4-upper,
+.section4-lower {
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.section4-upper img {
+  border: 3px solid #f2a055;
+}
+
+.section4-upper-sidebar,
+.section4-lower-sidebar {
+  width: 300px;
+  height: 325px;
+}
+
+.section4-header {
+  font-size: 36px;
+  line-height: 40px;
+  text-align: start;
+  margin-bottom: 20px;
+}
+
+.section4-description {
+  font-size: 21px;
+  line-height: 30px;
+  text-align: start;
+  color: #a0aec0;
+}
