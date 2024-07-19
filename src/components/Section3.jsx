@@ -15,15 +15,15 @@ function Section3() {
       </div>
       <div className="section3-description">
         Typebot is a better way to ask for information. It leads to an increase
-        in customer satisfaction and retention and multiply by <br />3 <br />{" "}
+        in customer satisfaction and retention and multiply by <br />3 <br />
         your conversion rate compared to classical forms.
       </div>
       <div className="signs">
-        <img src={closeImg} alt="closeImg" />
-        <img src={doneImg} alt="doneImg" />
+        <img src={closeImg} alt="close" />
+        <img src={doneImg} alt="done" />
       </div>
-      <img src={arrowImg} alt="arrowImg" id="arrow-Img" />
-      <img src={tryItOutImg} alt="tryItOutImg" id="tryItOut-Img" />
+      <img src={arrowImg} alt="arrow" id="arrow-Img" />
+      <img src={tryItOutImg} alt="try it out" id="tryItOut-Img" />
       <div className="section3-form">
         <div className="rightSection3">
           <label htmlFor="firstName">
@@ -54,16 +54,16 @@ function Section3() {
             What services are you interested in? <span>*</span>
           </label>
           <br />
-          <input type="checkbox" name="" id="" value="Website Dev" />
+          <input type="checkbox" value="Website Dev" />
           Website Dev
           <br />
-          <input type="checkbox" name="" id="" value="Content Marketing" />
+          <input type="checkbox" value="Content Marketing" />
           Content Marketing
           <br />
-          <input type="checkbox" name="" id="" value="Social Media" />
+          <input type="checkbox" value="Social Media" />
           Social Media
           <br />
-          <input type="checkbox" name="" id="checkboxId" value="UX/UI Design" />
+          <input type="checkbox" id="checkboxId" value="UX/UI Design" />
           UX/UI Design
           <br />
           <label htmlFor="addInfo">
@@ -80,9 +80,8 @@ function Section3() {
           <br />
           <button type="submit">Submit</button>
         </div>
-
         <div className="leftSection3">
-          <img src={typeBotImg} alt="typeBotImg" />
+          <img src={typeBotImg} alt="typebot" />
         </div>
       </div>
     </div>
