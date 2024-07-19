@@ -5,6 +5,7 @@ import Section2 from "./components/Section2";
 import Section3 from "./components/Section3";
 import Section4 from "./components/Section4";
 import LogoSection from "./components/LogoSection";
+import Section5 from "./components/Section5";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Section3 />
       <Section4 />
       <LogoSection />
+      <Section5 />
     </div>
   );
 }
