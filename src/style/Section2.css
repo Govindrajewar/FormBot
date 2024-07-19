@@ -1,0 +1,21 @@
+.section2 {
+  width: 100%;
+  height: fit-content;
+  background-color: black;
+  margin-top: 50px;
+  padding-bottom: 100px;
+}
+
+.section2-background {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.flowchart {
+  position: relative;
+  left: 50%;
+  margin-top: -41%;
+  transform: translateX(-50%);
+  width: 85%;
+}
