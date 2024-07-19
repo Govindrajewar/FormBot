@@ -1,0 +1,119 @@
+.section3 {
+  height: fit-content;
+  padding: 50px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.section3-header {
+  font-size: 60px;
+  font-weight: bold;
+  width: 900px;
+  line-height: 72px;
+}
+
+.section3-description {
+  font-size: 20px;
+  margin-top: 20px;
+  width: 600px;
+  width: 1100px;
+  line-height: 30px;
+  color: #a0aec0;
+}
+
+.signs {
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.signs > img {
+  cursor: pointer;
+}
+
+.section3-form {
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.rightSection3 {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 40%;
+  text-align: start;
+  background-color: black;
+  font-size: 16px;
+  padding: 10px;
+}
+
+.rightSection3 span {
+  color: red;
+}
+
+.rightSection3 button {
+  background-color: #1a5fff;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 20px;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.rightSection3 input {
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.rightSection3 textarea {
+  font-size: 16px;
+  padding: 10px;
+  width: 90%;
+}
+
+#firstName,
+#email,
+#addInfo {
+  width: 95%;
+  background-color: black;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.rightSection3 label {
+  margin-left: 5px;
+  margin-bottom: 30px;
+}
+
+#checkboxId {
+  margin-bottom: 20px;
+}
+
+.leftSection3 {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.leftSection3 img {
+  width: 100%;
+  height: 100%;
+}
+
+#arrow-Img {
+  position: absolute;
+  left: 82%;
+  top: 248%;
+}
+
+#tryItOut-Img {
+  position: absolute;
+  left: 80%;
+  top: 250%;
+}
