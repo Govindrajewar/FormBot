@@ -1,0 +1,45 @@
+.section1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px 10px;
+}
+
+.section1-header {
+  font-size: 72px;
+  width: 850px;
+  font-weight: bold;
+  background: linear-gradient(to right, #215ce3, #4b83ff, #b794f4);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
+.section1-description {
+  font-size: 20px;
+  margin-top: 10px;
+  width: 800px;
+}
+
+.create-formBit-btn {
+  font-size: 18px;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #0042da;
+  color: white;
+  border: 2px solid #0042da;
+  border-radius: 6px;
+  width: 300px;
+}
+
+.triangle-img {
+  position: absolute;
+  height: 250px;
+  left: 0px;
+}
+
+.halfcircle-img {
+  position: absolute;
+  height: 250px;
+  right: 0px;
+}
