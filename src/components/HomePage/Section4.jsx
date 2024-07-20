@@ -7,7 +7,7 @@ function Section4() {
     <div className="section4">
       <div className="section4-upper">
         <div>
-          <img src={upperImg} alt="Upper Section Image" />
+          <img src={upperImg} alt="bubbles" />
         </div>
         <div className="section4-upper-sidebar">
           <div className="section4-header">Easy building experience</div>
@@ -27,7 +27,7 @@ function Section4() {
           </div>
         </div>
         <div>
-          <img src={lowerImg} alt="Lower Section Image" />
+          <img src={lowerImg} alt="Quick" />
         </div>
       </div>
     </div>
