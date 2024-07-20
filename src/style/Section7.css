@@ -1,0 +1,54 @@
+.section7 {
+  background: linear-gradient(180deg, #171923 0%, #1a202c 100%);
+  height: 100vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.section7-header {
+  font-size: 36px;
+  line-height: 43px;
+  font-weight: 800;
+  width: 750px;
+}
+
+.section7-button {
+  width: fit-content;
+  margin: 30px;
+  padding: 15px 30px;
+  border-radius: 6px;
+  background-color: #1a5fff;
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 21px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.section7-text {
+  color: #a0aec0;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+.section7 span {
+  font-weight: bolder;
+}
+
+#triangleId {
+  position: absolute;
+  height: 250px;
+  left: 0px;
+  top: 875%;
+}
+
+#halfCircleId {
+  position: absolute;
+  height: 250px;
+  right: 0px;
+  top: 900%;
+}
