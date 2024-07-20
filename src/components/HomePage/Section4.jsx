@@ -1,6 +1,6 @@
-import "../style/Section4.css";
-import upperImg from "../assets/HomePage/Section4/upper-image.png";
-import lowerImg from "../assets/HomePage/Section4/lower-image.png";
+import "../../style/Section4.css";
+import upperImg from "../../assets/HomePage/Section4/upper-image.png";
+import lowerImg from "../../assets/HomePage/Section4/lower-image.png";
 
 function Section4() {
   return (

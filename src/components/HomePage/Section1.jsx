@@ -1,6 +1,6 @@
-import "../style/Section1.css";
-import triangleImg from "../assets/triangle.png";
-import halfcircleImg from "../assets/halfcircle.png";
+import "../../style/Section1.css";
+import triangleImg from "../../assets/triangle.png";
+import halfcircleImg from "../../assets/halfcircle.png";
 
 function Section1() {
   return (

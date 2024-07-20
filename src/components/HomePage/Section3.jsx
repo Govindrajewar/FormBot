@@ -1,9 +1,9 @@
-import "../style/Section3.css";
-import doneImg from "../assets/HomePage/Section3/done.png";
-import closeImg from "../assets/HomePage/Section3/close.png";
-import typeBotImg from "../assets/HomePage/Section3/typebotStandard.png";
-import arrowImg from "../assets/HomePage/Section3/arrow.png";
-import tryItOutImg from "../assets/HomePage/Section3/TryItOut.png";
+import "../../style/Section3.css";
+import doneImg from "../../assets/HomePage/Section3/done.png";
+import closeImg from "../../assets/HomePage/Section3/close.png";
+import typeBotImg from "../../assets/HomePage/Section3/typebotStandard.png";
+import arrowImg from "../../assets/HomePage/Section3/arrow.png";
+import tryItOutImg from "../../assets/HomePage/Section3/TryItOut.png";
 
 function Section3() {
   return (

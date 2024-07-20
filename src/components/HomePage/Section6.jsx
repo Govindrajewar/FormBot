@@ -1,21 +1,21 @@
-import "../style/Section6.css";
+import "../../style/Section6.css";
 // Background Icons
-import background1Icon from "../assets/HomePage/Section6/shadow/shadow1.png";
-import background2Icon from "../assets/HomePage/Section6/shadow/shadow2.png";
-import background3Icon from "../assets/HomePage/Section6/shadow/shadow3.png";
-import background4Icon from "../assets/HomePage/Section6/shadow/shadow4.png";
-import background5Icon from "../assets/HomePage/Section6/shadow/shadow5.png";
-import background6Icon from "../assets/HomePage/Section6/shadow/shadow6.png";
+import background1Icon from "../../assets/HomePage/Section6/shadow/shadow1.png";
+import background2Icon from "../../assets/HomePage/Section6/shadow/shadow2.png";
+import background3Icon from "../../assets/HomePage/Section6/shadow/shadow3.png";
+import background4Icon from "../../assets/HomePage/Section6/shadow/shadow4.png";
+import background5Icon from "../../assets/HomePage/Section6/shadow/shadow5.png";
+import background6Icon from "../../assets/HomePage/Section6/shadow/shadow6.png";
 
 // Brand Logos
-import iBanFirstLogo from "../assets/HomePage/Section6/Icons/icon1.png";
-import lemListLogo from "../assets/HomePage/Section6/Icons/icon2.png";
-import makerLeadLogo from "../assets/HomePage/Section6/Icons/icon3.png";
-import webiSharpLogo from "../assets/HomePage/Section6/Icons/icon4.png";
-import socialHackrsLogo from "../assets/HomePage/Section6/Icons/icon5.png";
-import pinPointLogo from "../assets/HomePage/Section6/Icons/icon6.png";
-import boleLogo from "../assets/HomePage/Section6/Icons/icon7.png";
-import awwwsomeLogo from "../assets/HomePage/Section6/Icons/icon8.png";
+import iBanFirstLogo from "../../assets/HomePage/Section6/Icons/icon1.png";
+import lemListLogo from "../../assets/HomePage/Section6/Icons/icon2.png";
+import makerLeadLogo from "../../assets/HomePage/Section6/Icons/icon3.png";
+import webiSharpLogo from "../../assets/HomePage/Section6/Icons/icon4.png";
+import socialHackrsLogo from "../../assets/HomePage/Section6/Icons/icon5.png";
+import pinPointLogo from "../../assets/HomePage/Section6/Icons/icon6.png";
+import boleLogo from "../../assets/HomePage/Section6/Icons/icon7.png";
+import awwwsomeLogo from "../../assets/HomePage/Section6/Icons/icon8.png";
 
 function Section6() {
   return (

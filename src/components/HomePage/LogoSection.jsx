@@ -1,20 +1,20 @@
-import "../style/LogoSection.css";
-import gmailLogo from "../assets/HomePage/Logo/Upper/upperlogo1.png";
-import mailChimpLogo from "../assets/HomePage/Logo/Upper/upperlogo2.png";
-import notionLogo from "../assets/HomePage/Logo/Upper/upperlogo3.png";
-import webFlowLogo from "../assets/HomePage/Logo/Upper/upperlogo4.png";
-import wordpressLogo from "../assets/HomePage/Logo/Upper/upperlogo5.png";
-import googleCalenderLogo from "../assets/HomePage/Logo/Upper/upperlogo6.png";
-import noCodeLogo from "../assets/HomePage/Logo/Upper/upperlogo7.png";
-import googleDriveLogo from "../assets/HomePage/Logo/Upper/upperlogo8.png";
+import "../../style/LogoSection.css";
+import gmailLogo from "../../assets/HomePage/Logo/Upper/upperlogo1.png";
+import mailChimpLogo from "../../assets/HomePage/Logo/Upper/upperlogo2.png";
+import notionLogo from "../../assets/HomePage/Logo/Upper/upperlogo3.png";
+import webFlowLogo from "../../assets/HomePage/Logo/Upper/upperlogo4.png";
+import wordpressLogo from "../../assets/HomePage/Logo/Upper/upperlogo5.png";
+import googleCalenderLogo from "../../assets/HomePage/Logo/Upper/upperlogo6.png";
+import noCodeLogo from "../../assets/HomePage/Logo/Upper/upperlogo7.png";
+import googleDriveLogo from "../../assets/HomePage/Logo/Upper/upperlogo8.png";
 
-import slackLogo from "../assets/HomePage/Logo/Lower/lowerlogo1.png";
-import shopifyLogo from "../assets/HomePage/Logo/Lower/lowerlogo2.png";
-import airtableLogo from "../assets/HomePage/Logo/Lower/lowerlogo3.png";
-import googleSheetLogo from "../assets/HomePage/Logo/Lower/lowerlogo4.png";
-import zapierLogo from "../assets/HomePage/Logo/Lower/lowerlogo5.png";
-import calendlyLogo from "../assets/HomePage/Logo/Lower/lowerlogo6.png";
-import salesforceLogo from "../assets/HomePage/Logo/Lower/lowerlogo7.png";
+import slackLogo from "../../assets/HomePage/Logo/Lower/lowerlogo1.png";
+import shopifyLogo from "../../assets/HomePage/Logo/Lower/lowerlogo2.png";
+import airtableLogo from "../../assets/HomePage/Logo/Lower/lowerlogo3.png";
+import googleSheetLogo from "../../assets/HomePage/Logo/Lower/lowerlogo4.png";
+import zapierLogo from "../../assets/HomePage/Logo/Lower/lowerlogo5.png";
+import calendlyLogo from "../../assets/HomePage/Logo/Lower/lowerlogo6.png";
+import salesforceLogo from "../../assets/HomePage/Logo/Lower/lowerlogo7.png";
 
 function LogoSection() {
   return (

@@ -1,7 +1,7 @@
-import "../style/Section2.css";
-import leftBG from "../assets/left-bg.png";
-import rightBG from "../assets/right-bg.png";
-import flowChart from "../assets/flowchart.png";
+import "../../style/Section2.css";
+import leftBG from "../../assets/left-bg.png";
+import rightBG from "../../assets/right-bg.png";
+import flowChart from "../../assets/flowchart.png";
 
 function Section2() {
   return (
