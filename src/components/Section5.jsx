@@ -9,7 +9,7 @@ function Section5() {
         One of the main advantage of a chat application is that you collect the
         user's responses on each question. You won't lose any valuable data.
       </div>
-      <img src={backgroundImg} alt="background Img" />
+      <img src={backgroundImg} alt="background Img" id="backgroundImgId" />
     </div>
   );
 }

@@ -44,7 +44,7 @@
   border-radius: 6px;
   width: 40%;
   text-align: start;
-  background-color: black;
+  background-color: #171923;
   font-size: 16px;
   padding: 10px;
 }
@@ -79,7 +79,7 @@
 #email,
 #addInfo {
   width: 95%;
-  background-color: black;
+  background-color: #171923;
   border: 1px solid #ccc;
   margin: 10px 0;
 }
