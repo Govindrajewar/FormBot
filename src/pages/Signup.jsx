@@ -11,9 +11,7 @@ function Signup() {
     navigate("/");
   };
 
-  const handleLogin = () => {
-    navigate("/login");
-  };
+
 
   return (
     <div className="signup">
@@ -61,7 +59,7 @@ function Signup() {
 
         <div className="signup-text">
           Already have an account ?{" "}
-          <a href="" onClick={handleLogin}>
+          <a href="/login">
             Login
           </a>
         </div>

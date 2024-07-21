@@ -11,10 +11,6 @@ function Login() {
     navigate("/");
   };
 
-  const handleSignup = () => {
-    navigate("/signup");
-  };
-
   return (
     <div className="login">
       <div className="login-form">
@@ -41,7 +37,7 @@ function Login() {
         <div className="login-btn">Log in</div>
 
         <div className="login-text">
-          Don’t have an account? <a href="" onClick={handleSignup}>Register now</a>
+          Don’t have an account? <a href="/signup">Register now</a>
         </div>
       </div>
 
