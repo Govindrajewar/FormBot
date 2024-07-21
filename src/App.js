@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signup from "./pages/Signup";
 import Settings from "./pages/Settings";
+import Workspace from "./pages/Workspace";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/workspace" element={<Workspace />} />
         </Routes>
       </BrowserRouter>
     </div>
