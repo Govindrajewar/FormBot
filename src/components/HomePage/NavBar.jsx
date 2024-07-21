@@ -1,10 +1,15 @@
 import "../../style/NavBar.css";
+import { useNavigate } from "react-router-dom";
 
 function NavBar() {
+  const navigate = useNavigate();
+  const handleLogin = () => {
+    navigate("/login");
+  };
   return (
     <div className="navbar">
       <div className="title">
-        <div className="title-logo" >
+        <div className="title-logo">
           <div className="upper">
             <div className="circleUpper"></div>
             <div className="rectangleUpper"></div>
@@ -18,7 +23,9 @@ function NavBar() {
       </div>
 
       <div className="buttons">
-        <button className="signIn-btn">Sign in</button>
+        <button className="signIn-btn" onClick={handleLogin}>
+          Sign in
+        </button>
         <button className="create-btn">Create a FormBot</button>
       </div>
     </div>
