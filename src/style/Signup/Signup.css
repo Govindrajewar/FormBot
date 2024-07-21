@@ -1,4 +1,4 @@
-.login {
+.signup {
   background-color: #121212;
   height: 100vh;
   width: 100vw;
@@ -9,22 +9,23 @@
   align-items: center;
 }
 
-.login label {
+.signup label {
   font-size: 14px;
   font-weight: 500;
   line-height: 21px;
 }
 
-.login input {
+.signup input {
   font-size: 14px;
   font-weight: 300;
   line-height: 21px;
   color: #636364;
   padding: 10px;
   border-radius: 12px;
+  margin-bottom: 10px;
 }
 
-.login .login-btn {
+.signup .signup-btn {
   background-color: #1a5fff;
   color: #ffffff;
   font-size: 14px;
@@ -40,7 +41,7 @@
   box-shadow: 0px 4px 10px 0px #e9444b40;
 }
 
-.login .login-text {
+.signup .signup-text {
   color: #ffffff;
   font-size: 14px;
   font-weight: 400;
@@ -48,25 +49,27 @@
   margin-top: 10px;
 }
 
-.login #password,
-.login #email {
+.signup #username,
+.signup #password,
+.signup #confirmpassword,
+.signup #email {
   background-color: #121212;
   width: 350px;
   border: 1px solid #636364;
   margin-top: 10px;
 }
 
-.login a {
+.signup a {
   color: #1a5fff;
   margin-left: 5px;
   text-decoration: none;
 }
 
-.login img {
+.signup img {
   position: absolute;
 }
 
-.login #arrowBack {
+.signup #arrowBack {
   position: absolute;
   top: 40px;
   left: 40px;
@@ -75,19 +78,19 @@
   cursor: pointer;
 }
 
-.login #bottomEllipse {
+.signup #bottomEllipse {
   position: absolute;
   bottom: 0;
   left: 62%;
 }
 
-.login #sideEllipse {
+.signup #sideEllipse {
   position: absolute;
   right: 0;
   top: 10%;
 }
 
-.login #polygon {
+.signup #polygon {
   position: absolute;
   top: 25%;
   left: 5%;
