@@ -1,0 +1,89 @@
+.header-container {
+  background-color: #18181b;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-container #formNameId {
+  outline: none;
+  font-size: 12px;
+  line-height: 20px;
+  padding: 5px;
+  color: #ffffff;
+  width: 200px;
+  background-color: #37373e;
+  border-radius: 3px;
+  border: none;
+}
+
+.header-container .item-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.header-container .item-container .item {
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 600;
+  margin-right: 30px;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.header-container .item-container .item:hover {
+  border: 1px solid #7ea6ff;
+  color: #7ea6ff;
+}
+
+.header-container .buttons {
+  align-items: center;
+}
+
+.header-container button {
+  outline: none;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 5px 15px;
+  color: #ffffff;
+  background-color: #37373e;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+  margin-right: 20px;
+  width: 65px;
+}
+
+.header-container img {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin-right: 20px;
+}
+
+.header-container .buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.header-container .buttons .share-btn {
+  background-color: #848890;
+  color: #ffffff;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+}
+
+.header-container .buttons .save-btn {
+  background-color: #848890;
+  color: #ffffff;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  background: #4ade80cc;
+}
