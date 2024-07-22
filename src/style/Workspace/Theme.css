@@ -1,0 +1,39 @@
+.theme {
+  height: 89.95%;
+  width: 100%;
+  background-color: #18181b;
+}
+
+.theme-container {
+  width: 20%;
+  height: 100%;
+  background-color: #18181b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1px solid grey;
+}
+
+.theme .theme-header {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 25px;
+  border-right: 1px solid grey;
+  border-bottom: 1px solid grey;
+  width: 100%;
+  text-align: center;
+  padding: 15px 0;
+  margin-bottom: 15px;
+}
+
+.theme-container img {
+  height: 170px;
+  width: 210px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.theme-container img:hover {
+  border: 5px solid skyblue;
+}

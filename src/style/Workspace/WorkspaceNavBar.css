@@ -5,6 +5,7 @@
   justify-content: space-between;
   align-items: center;
   height: 50px;
+  border-bottom: 1px solid gray;
 }
 
 .header-container #formNameId {
