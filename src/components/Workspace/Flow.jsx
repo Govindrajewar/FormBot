@@ -1,5 +1,6 @@
 import "../../style/Workspace/Flow.css";
 import start from "../../assets/Workspace/Flow/start.png";
+import deleteLogo from "../../assets/Workspace/Flow/delete.png";
 
 // Bubble Icons
 import textBubble from "../../assets/Workspace/Flow/Bubbles/text.png";
@@ -79,6 +80,16 @@ function Flow() {
         <div className="start-header">
           <img src={start} alt="start" />
           Start
+        </div>
+        <div className="text-item-1">
+          <img src={deleteLogo} alt="delete" id="deleteId"/>
+          <div className="item-header">Text</div>
+          <div className="item-data">
+            <img src={textBubble} alt="Text Bubble" />
+            <input type="text" placeholder="Click here to edit" />
+          </div>
+          <div className="item-warning">Required Field</div>
+
         </div>
       </div>
     </div>
