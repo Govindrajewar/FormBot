@@ -27,6 +27,7 @@ function Flow() {
   const [textInputItemCount, setTextInputItemCount] = useState(0);
   const [numberInputItemCount, setNumberInputItemCount] = useState(0);
   const [emailInputItemCount, setEmailInputItemCount] = useState(0);
+  const [phoneInputItemCount, setPhoneInputItemCount] = useState(0);
 
   const handleAddTextItem = () => {
     const newTextItemId = textItemCount + 1;
@@ -125,6 +126,20 @@ function Flow() {
     setEmailInputItemCount(newEmailInputItemId);
   };
 
+  const handleAddPhoneInputItem = () => {
+    const newPhoneInputItemId = phoneInputItemCount + 1;
+    setDynamicItems([
+      ...dynamicItems,
+      {
+        id: `${newPhoneInputItemId}`,
+        type: "phone-input",
+        src: phoneInput,
+        placeholder: "Hint : User will input a phone on his form",
+      },
+    ]);
+    setPhoneInputItemCount(newPhoneInputItemId);
+  };
+
   return (
     <div className="flow">
       <div className="flow-items">
@@ -163,7 +178,7 @@ function Flow() {
               <img src={emailInput} alt="Email Input" />
               Email
             </div>
-            <div className="bubble">
+            <div className="bubble" onClick={handleAddPhoneInputItem}>
               <img src={phoneInput} alt="Phone Input" />
               Phone
             </div>
@@ -206,6 +221,8 @@ function Flow() {
                 ? "Input Number"
                 : item.type === "email-input"
                 ? "Input Email"
+                : item.type === "phone-input"
+                ? "Input Phone"
                 : "Unknown"}{" "}
               {item.id}
             </div>
@@ -248,6 +265,11 @@ function Flow() {
                 <>
                   <img src={item.src} alt="Email Input" />
                   <input type="email" placeholder={item.placeholder} disabled />
+                </>
+              ) : item.type === "phone-input" ? (
+                <>
+                  <img src={item.src} alt="Phone Input" />
+                  <input type="tel" placeholder={item.placeholder} disabled />
                 </>
               ) : (
                 <div>Unknown Item Type</div>
