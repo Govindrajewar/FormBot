@@ -24,6 +24,7 @@ function Flow() {
   const [imageItemCount, setImageItemCount] = useState(0);
   const [videoItemCount, setVideoItemCount] = useState(0);
   const [gifItemCount, setGifItemCount] = useState(0);
+  const [textInputItemCount, setTextInputItemCount] = useState(0);
 
   const handleAddTextItem = () => {
     const newTextItemId = textItemCount + 1;
@@ -80,6 +81,20 @@ function Flow() {
     setGifItemCount(newGifItemId);
   };
 
+  const handleAddTextInputItem = () => {
+    const newTextInputItemId = textInputItemCount + 1;
+    setDynamicItems([
+      ...dynamicItems,
+      {
+        id: `${newTextInputItemId}`,
+        type: "text-input",
+        src: textInput,
+        placeholder: "Hint : User will input a text on his form",
+      },
+    ]);
+    setTextInputItemCount(newTextInputItemId);
+  };
+
   return (
     <div className="flow">
       <div className="flow-items">
@@ -106,7 +121,7 @@ function Flow() {
 
           <div className="sub-header">Inputs</div>
           <div className="bubbles">
-            <div className="bubble">
+            <div className="bubble" onClick={handleAddTextInputItem}>
               <img src={textInput} alt="Text Input" />
               Text
             </div>
@@ -153,7 +168,11 @@ function Flow() {
                 ? "Image"
                 : item.type === "video"
                 ? "Video"
-                : "GIF"}{" "}
+                : item.type === "gif"
+                ? "GIF"
+                : item.type === "text-input"
+                ? "Text Input"
+                : "Unknown"}{" "}
               {item.id}
             </div>
             <div className="item-data">
@@ -172,11 +191,18 @@ function Flow() {
                   <img src={item.src} alt="Video Item" />
                   <input type="text" placeholder={item.placeholder} />
                 </>
-              ) : (
+              ) : item.type === "gif" ? (
                 <>
                   <img src={item.src} alt="GIF Item" />
                   <input type="text" placeholder={item.placeholder} />
                 </>
+              ) : item.type === "text-input" ? (
+                <>
+                  <img src={item.src} alt="Text Input" />
+                  <input type="text" placeholder={item.placeholder} disabled />
+                </>
+              ) : (
+                <div>Unknown Item Type</div>
               )}
             </div>
             {/* <div className="item-warning">Required Field</div> */}
