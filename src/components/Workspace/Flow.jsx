@@ -26,6 +26,7 @@ function Flow() {
   const [gifItemCount, setGifItemCount] = useState(0);
   const [textInputItemCount, setTextInputItemCount] = useState(0);
   const [numberInputItemCount, setNumberInputItemCount] = useState(0);
+  const [emailInputItemCount, setEmailInputItemCount] = useState(0);
 
   const handleAddTextItem = () => {
     const newTextItemId = textItemCount + 1;
@@ -110,6 +111,20 @@ function Flow() {
     setNumberInputItemCount(newNumberInputItemId);
   };
 
+  const handleAddEmailInputItem = () => {
+    const newEmailInputItemId = emailInputItemCount + 1;
+    setDynamicItems([
+      ...dynamicItems,
+      {
+        id: `${newEmailInputItemId}`,
+        type: "email-input",
+        src: emailInput,
+        placeholder: "Hint : User will input a email on his form",
+      },
+    ]);
+    setEmailInputItemCount(newEmailInputItemId);
+  };
+
   return (
     <div className="flow">
       <div className="flow-items">
@@ -144,7 +159,7 @@ function Flow() {
               <img src={numberInput} alt="Number Input" />
               Number
             </div>
-            <div className="bubble">
+            <div className="bubble" onClick={handleAddEmailInputItem}>
               <img src={emailInput} alt="Email Input" />
               Email
             </div>
@@ -189,6 +204,8 @@ function Flow() {
                 ? "Text Input"
                 : item.type === "number-input"
                 ? "Input Number"
+                : item.type === "email-input"
+                ? "Input Email"
                 : "Unknown"}{" "}
               {item.id}
             </div>
@@ -226,6 +243,11 @@ function Flow() {
                     placeholder={item.placeholder}
                     disabled
                   />
+                </>
+              ) : item.type === "email-input" ? (
+                <>
+                  <img src={item.src} alt="Email Input" />
+                  <input type="email" placeholder={item.placeholder} disabled />
                 </>
               ) : (
                 <div>Unknown Item Type</div>
