@@ -28,6 +28,7 @@ function Flow() {
   const [numberInputItemCount, setNumberInputItemCount] = useState(0);
   const [emailInputItemCount, setEmailInputItemCount] = useState(0);
   const [phoneInputItemCount, setPhoneInputItemCount] = useState(0);
+  const [dateInputItemCount, setDateInputItemCount] = useState(0);
 
   const handleAddTextItem = () => {
     const newTextItemId = textItemCount + 1;
@@ -140,6 +141,20 @@ function Flow() {
     setPhoneInputItemCount(newPhoneInputItemId);
   };
 
+  const handleAddDateInputItem = () => {
+    const newDateInputItemId = dateInputItemCount + 1;
+    setDynamicItems([
+      ...dynamicItems,
+      {
+        id: `${newDateInputItemId}`,
+        type: "date-input",
+        src: dateInput,
+        placeholder: "Hint : User will select a date",
+      },
+    ]);
+    setDateInputItemCount(newDateInputItemId);
+  };
+
   return (
     <div className="flow">
       <div className="flow-items">
@@ -182,7 +197,7 @@ function Flow() {
               <img src={phoneInput} alt="Phone Input" />
               Phone
             </div>
-            <div className="bubble">
+            <div className="bubble" onClick={handleAddDateInputItem}>
               <img src={dateInput} alt="Date Input" />
               Date
             </div>
@@ -223,6 +238,8 @@ function Flow() {
                 ? "Input Email"
                 : item.type === "phone-input"
                 ? "Input Phone"
+                : item.type === "date-input"
+                ? "Input Date"
                 : "Unknown"}{" "}
               {item.id}
             </div>
@@ -270,6 +287,11 @@ function Flow() {
                 <>
                   <img src={item.src} alt="Phone Input" />
                   <input type="tel" placeholder={item.placeholder} disabled />
+                </>
+              ) : item.type === "date-input" ? (
+                <>
+                  <img src={item.src} alt="Date Input" />
+                  <input type="text" placeholder={item.placeholder} disabled />
                 </>
               ) : (
                 <div>Unknown Item Type</div>
