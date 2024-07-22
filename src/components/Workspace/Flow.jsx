@@ -30,6 +30,7 @@ function Flow() {
   const [phoneInputItemCount, setPhoneInputItemCount] = useState(0);
   const [dateInputItemCount, setDateInputItemCount] = useState(0);
   const [rateInputItemCount, setRateInputItemCount] = useState(0);
+  const [buttonInputItemCount, setButtonInputItemCount] = useState(0);
 
   const handleAddTextItem = () => {
     const newTextItemId = textItemCount + 1;
@@ -170,6 +171,20 @@ function Flow() {
     setRateInputItemCount(newRateInputItemId);
   };
 
+  const handleAddButtonInputItem = () => {
+    const newButtonInputItemId = buttonInputItemCount + 1;
+    setDynamicItems([
+      ...dynamicItems,
+      {
+        id: `${newButtonInputItemId}`,
+        type: "button-input",
+        src: buttonInput,
+        placeholder: " ",
+      },
+    ]);
+    setButtonInputItemCount(newButtonInputItemId);
+  };
+
   return (
     <div className="flow">
       <div className="flow-items">
@@ -220,7 +235,7 @@ function Flow() {
               <img src={ratingInput} alt="Rating Input" />
               Rating
             </div>
-            <div className="bubble">
+            <div className="bubble" onClick={handleAddButtonInputItem}>
               <img src={buttonInput} alt="Button Input" />
               Button
             </div>
@@ -257,6 +272,8 @@ function Flow() {
                 ? "Input Date"
                 : item.type === "rate-input"
                 ? "Input Rate"
+                : item.type === "button-input"
+                ? "Input Button"
                 : "Unknown"}{" "}
               {item.id}
             </div>
@@ -314,6 +331,15 @@ function Flow() {
                 <>
                   <img src={item.src} alt="Rate Input" />
                   <input type="text" placeholder={item.placeholder} disabled />
+                </>
+              ) : item.type === "button-input" ? (
+                <>
+                  <img src={item.src} alt="Button Input" />
+                  <input
+                    type="button"
+                    placeholder={item.placeholder}
+                    disabled
+                  />
                 </>
               ) : (
                 <div>Unknown Item Type</div>
