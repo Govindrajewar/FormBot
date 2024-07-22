@@ -20,15 +20,34 @@ import buttonInput from "../../assets/Workspace/Flow/Inputs/button.png";
 
 function Flow() {
   const [dynamicItems, setDynamicItems] = useState([]);
+  const [textItemCount, setTextItemCount] = useState(0);
+  const [imageItemCount, setImageItemCount] = useState(0);
 
   const handleAddTextItem = () => {
+    const newTextItemId = textItemCount + 1;
     setDynamicItems([
       ...dynamicItems,
       {
-        id: dynamicItems.length + 1,
+        id: `${newTextItemId}`,
+        type: "text",
         placeholder: "Click here to edit",
       },
     ]);
+    setTextItemCount(newTextItemId);
+  };
+
+  const handleAddImageItem = () => {
+    const newImageItemId = imageItemCount + 1;
+    setDynamicItems([
+      ...dynamicItems,
+      {
+        id: `${newImageItemId}`,
+        type: "image",
+        src: image,
+        placeholder: "Click to add link",
+      },
+    ]);
+    setImageItemCount(newImageItemId);
   };
 
   return (
@@ -41,7 +60,7 @@ function Flow() {
               <img src={textBubble} alt="Text Bubble" />
               Text
             </div>
-            <div className="bubble">
+            <div className="bubble" onClick={handleAddImageItem}>
               <img src={image} alt="Images Bubble" />
               Image
             </div>
@@ -97,10 +116,21 @@ function Flow() {
         {dynamicItems.map((item) => (
           <div className="text-item" key={item.id}>
             <img src={deleteLogo} alt="delete" id="deleteId" />
-            <div className="item-header">Text {item.id}</div>
+            <div className="item-header">
+              {item.type === "text" ? "Text" : "Image"} {item.id}
+            </div>
             <div className="item-data">
-              <img src={textBubble} alt="Text Bubble" />
-              <input type="text" placeholder={item.placeholder} />
+              {item.type === "text" ? (
+                <>
+                  <img src={textBubble} alt="Text Bubble" />
+                  <input type="text" placeholder={item.placeholder} />
+                </>
+              ) : (
+                <>
+                  <img src={item.src} alt="Images Item" />
+                  <input type="text" placeholder={item.placeholder} />
+                </>
+              )}
             </div>
             {/* <div className="item-warning">Required Field</div> */}
           </div>
