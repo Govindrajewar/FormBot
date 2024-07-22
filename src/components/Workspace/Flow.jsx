@@ -25,6 +25,7 @@ function Flow() {
   const [videoItemCount, setVideoItemCount] = useState(0);
   const [gifItemCount, setGifItemCount] = useState(0);
   const [textInputItemCount, setTextInputItemCount] = useState(0);
+  const [numberInputItemCount, setNumberInputItemCount] = useState(0);
 
   const handleAddTextItem = () => {
     const newTextItemId = textItemCount + 1;
@@ -95,6 +96,20 @@ function Flow() {
     setTextInputItemCount(newTextInputItemId);
   };
 
+  const handleAddNumberInputItem = () => {
+    const newNumberInputItemId = numberInputItemCount + 1;
+    setDynamicItems([
+      ...dynamicItems,
+      {
+        id: `${newNumberInputItemId}`,
+        type: "number-input",
+        src: numberInput,
+        placeholder: "Hint : User will input a number on his form",
+      },
+    ]);
+    setNumberInputItemCount(newNumberInputItemId);
+  };
+
   return (
     <div className="flow">
       <div className="flow-items">
@@ -125,7 +140,7 @@ function Flow() {
               <img src={textInput} alt="Text Input" />
               Text
             </div>
-            <div className="bubble">
+            <div className="bubble" onClick={handleAddNumberInputItem}>
               <img src={numberInput} alt="Number Input" />
               Number
             </div>
@@ -172,6 +187,8 @@ function Flow() {
                 ? "GIF"
                 : item.type === "text-input"
                 ? "Text Input"
+                : item.type === "number-input"
+                ? "Input Number"
                 : "Unknown"}{" "}
               {item.id}
             </div>
@@ -201,11 +218,19 @@ function Flow() {
                   <img src={item.src} alt="Text Input" />
                   <input type="text" placeholder={item.placeholder} disabled />
                 </>
+              ) : item.type === "number-input" ? (
+                <>
+                  <img src={item.src} alt="Number Input" />
+                  <input
+                    type="number"
+                    placeholder={item.placeholder}
+                    disabled
+                  />
+                </>
               ) : (
                 <div>Unknown Item Type</div>
               )}
             </div>
-            {/* <div className="item-warning">Required Field</div> */}
           </div>
         ))}
       </div>
