@@ -6,15 +6,15 @@ function Footer() {
     <div className="footer">
       <div className="footer-container-developer">
         Made with ❤️ by <br />
-        <a href="">@cuvette</a>
+        <a href="https://cuvette.tech/app/student/">@cuvette</a>
       </div>
       <div className="footer-container">
-        <a href="">
+        <a href="https://www.npmjs.com/package/http-status-codes">
           Status &nbsp;
           <img src={linkImg} alt="link" />
         </a>
 
-        <a href="">
+        <a href="https://legacy.reactjs.org/docs/getting-started.html">
           Documentation &nbsp;
           <img src={linkImg} alt="link" />
         </a>
@@ -22,10 +22,10 @@ function Footer() {
           Roadmap &nbsp;
           <img src={linkImg} alt="link" />
         </a>
-        <a href="">Pricing</a>
+        <a href="https://cuvette.tech/placement-guarantee-program/">Pricing</a>
       </div>
       <div className="footer-container">
-        <a href="">
+        <a href="https://discord.com/">
           Discord &nbsp;
           <img src={linkImg} alt="link" />
         </a>
@@ -41,13 +41,13 @@ function Footer() {
           LinkedIn &nbsp;
           <img src={linkImg} alt="link" />
         </a>
-        <a href="">OSS Friends</a>
+        <a href="https://openbb.co/oss-friends">OSS Friends</a>
       </div>
       <div className="footer-container">
-        <a href="">About</a>
-        <a href="">Contact</a>
-        <a href="">Terms of Service</a>
-        <a href="">Privacy Policy</a>
+        <a href="https://legacy.reactjs.org/docs/faq-ajax.html">About</a>
+        <a href="https://github.com/Govindrajewar">Contact</a>
+        <a href="https://opensource.fb.com/legal/terms/">Terms of Service</a>
+        <a href="https://opensource.fb.com/legal/privacy/">Privacy Policy</a>
       </div>
     </div>
   );
