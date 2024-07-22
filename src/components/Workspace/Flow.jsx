@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import "../../style/Workspace/Flow.css";
 import start from "../../assets/Workspace/Flow/start.png";
 import deleteLogo from "../../assets/Workspace/Flow/delete.png";
@@ -18,13 +19,25 @@ import ratingInput from "../../assets/Workspace/Flow/Inputs/rating.png";
 import buttonInput from "../../assets/Workspace/Flow/Inputs/button.png";
 
 function Flow() {
+  const [dynamicItems, setDynamicItems] = useState([]);
+
+  const handleAddTextItem = () => {
+    setDynamicItems([
+      ...dynamicItems,
+      {
+        id: dynamicItems.length + 1,
+        placeholder: "Click here to edit",
+      },
+    ]);
+  };
+
   return (
     <div className="flow">
       <div className="flow-items">
         <div className="flow-container">
           <div className="sub-header sub-header-bubbles">Bubbles</div>
           <div className="bubbles">
-            <div className="bubble">
+            <div className="bubble" onClick={handleAddTextItem}>
               <img src={textBubble} alt="Text Bubble" />
               Text
             </div>
@@ -81,16 +94,17 @@ function Flow() {
           <img src={start} alt="start" />
           Start
         </div>
-        <div className="text-item-1">
-          <img src={deleteLogo} alt="delete" id="deleteId"/>
-          <div className="item-header">Text</div>
-          <div className="item-data">
-            <img src={textBubble} alt="Text Bubble" />
-            <input type="text" placeholder="Click here to edit" />
+        {dynamicItems.map((item) => (
+          <div className="text-item" key={item.id}>
+            <img src={deleteLogo} alt="delete" id="deleteId" />
+            <div className="item-header">Text {item.id}</div>
+            <div className="item-data">
+              <img src={textBubble} alt="Text Bubble" />
+              <input type="text" placeholder={item.placeholder} />
+            </div>
+            {/* <div className="item-warning">Required Field</div> */}
           </div>
-          <div className="item-warning">Required Field</div>
-
-        </div>
+        ))}
       </div>
     </div>
   );

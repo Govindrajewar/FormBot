@@ -3,6 +3,8 @@
   width: 90%;
   height: 85%;
   padding: 1%;
+  display: flex;
+  overflow: hidden;
 }
 
 .flow-items {
@@ -27,6 +29,7 @@
   display: grid;
   grid-template-columns: 150px 150px;
   column-gap: 20px;
+  padding: 0 5px;
 }
 
 .bubble {
@@ -47,9 +50,13 @@
 
 /* Flowchart Container */
 .flowchart-container {
-  position: absolute;
+  position: relative;
   top: 20%;
   left: 50%;
+  transform: translateX(-50%);
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-bottom: 100px;
 }
 
 .start-header {
@@ -60,6 +67,7 @@
   padding: 10px;
   border-radius: 16px;
   background-color: #18181b;
+  margin: 0 auto 30px;
 }
 
 .start-header img {
@@ -68,15 +76,16 @@
 
 /* dynamic items */
 
-.text-item-1 {
+.text-item {
   display: flex;
   flex-direction: column;
   background-color: #18181b;
   padding: 15px;
   margin-top: 20px;
   border-radius: 16px;
-  position: absolute;
+  position: relative;
   width: 350px;
+  margin: 10px auto 20px;
 }
 
 #deleteId {
@@ -91,10 +100,6 @@
   background-color: #444444;
 }
 
-#deleteId:hover {
-  background-color: #444444;
-}
-
 .item-header {
   font-size: 20px;
   line-height: 21px;
@@ -104,10 +109,8 @@
 
 .item-data {
   display: flex;
-  /* flex-direction: column; */
   align-items: center;
   padding: 5px;
-  /* border: 1px solid #ccc; */
   border-radius: 5px;
   background-color: #1f1f23;
   margin-top: 10px;
@@ -136,13 +139,4 @@
   font-weight: 500;
   line-height: 15px;
   padding: 5px 0;
-}
-
-/* .item-data:focus {
-  outline: red;
-  border: 1px solid red;
-} */
-
-.bordered {
-  border: 2px solid red; /* Example border */
 }
