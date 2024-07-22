@@ -23,6 +23,7 @@ function Flow() {
   const [textItemCount, setTextItemCount] = useState(0);
   const [imageItemCount, setImageItemCount] = useState(0);
   const [videoItemCount, setVideoItemCount] = useState(0);
+  const [gifItemCount, setGifItemCount] = useState(0);
 
   const handleAddTextItem = () => {
     const newTextItemId = textItemCount + 1;
@@ -65,6 +66,20 @@ function Flow() {
     setVideoItemCount(newVideoItemId);
   };
 
+  const handleAddGifItem = () => {
+    const newGifItemId = gifItemCount + 1;
+    setDynamicItems([
+      ...dynamicItems,
+      {
+        id: `${newGifItemId}`,
+        type: "gif",
+        src: gif,
+        placeholder: "Click to add link",
+      },
+    ]);
+    setGifItemCount(newGifItemId);
+  };
+
   return (
     <div className="flow">
       <div className="flow-items">
@@ -83,7 +98,7 @@ function Flow() {
               <img src={video} alt="Video Bubble" />
               Video
             </div>
-            <div className="bubble">
+            <div className="bubble" onClick={handleAddGifItem}>
               <img src={gif} alt="GIF Bubble" />
               GIF
             </div>
@@ -136,7 +151,9 @@ function Flow() {
                 ? "Text"
                 : item.type === "image"
                 ? "Image"
-                : "Video"}{" "}
+                : item.type === "video"
+                ? "Video"
+                : "GIF"}
               {item.id}
             </div>
             <div className="item-data">
@@ -150,9 +167,14 @@ function Flow() {
                   <img src={item.src} alt="Image Item" />
                   <input type="text" placeholder={item.placeholder} />
                 </>
-              ) : (
+              ) : item.type === "video" ? (
                 <>
                   <img src={item.src} alt="Video Item" />
+                  <input type="text" placeholder={item.placeholder} />
+                </>
+              ) : (
+                <>
+                  <img src={item.src} alt="GIF Item" />
                   <input type="text" placeholder={item.placeholder} />
                 </>
               )}
