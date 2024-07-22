@@ -22,6 +22,7 @@ function Flow() {
   const [dynamicItems, setDynamicItems] = useState([]);
   const [textItemCount, setTextItemCount] = useState(0);
   const [imageItemCount, setImageItemCount] = useState(0);
+  const [videoItemCount, setVideoItemCount] = useState(0);
 
   const handleAddTextItem = () => {
     const newTextItemId = textItemCount + 1;
@@ -50,6 +51,20 @@ function Flow() {
     setImageItemCount(newImageItemId);
   };
 
+  const handleAddVideoItem = () => {
+    const newVideoItemId = videoItemCount + 1;
+    setDynamicItems([
+      ...dynamicItems,
+      {
+        id: `${newVideoItemId}`,
+        type: "video",
+        src: video,
+        placeholder: "Click to add link",
+      },
+    ]);
+    setVideoItemCount(newVideoItemId);
+  };
+
   return (
     <div className="flow">
       <div className="flow-items">
@@ -64,7 +79,7 @@ function Flow() {
               <img src={image} alt="Images Bubble" />
               Image
             </div>
-            <div className="bubble">
+            <div className="bubble" onClick={handleAddVideoItem}>
               <img src={video} alt="Video Bubble" />
               Video
             </div>
@@ -117,7 +132,12 @@ function Flow() {
           <div className="text-item" key={item.id}>
             <img src={deleteLogo} alt="delete" id="deleteId" />
             <div className="item-header">
-              {item.type === "text" ? "Text" : "Image"} {item.id}
+              {item.type === "text"
+                ? "Text"
+                : item.type === "image"
+                ? "Image"
+                : "Video"}{" "}
+              {item.id}
             </div>
             <div className="item-data">
               {item.type === "text" ? (
@@ -125,9 +145,14 @@ function Flow() {
                   <img src={textBubble} alt="Text Bubble" />
                   <input type="text" placeholder={item.placeholder} />
                 </>
+              ) : item.type === "image" ? (
+                <>
+                  <img src={item.src} alt="Image Item" />
+                  <input type="text" placeholder={item.placeholder} />
+                </>
               ) : (
                 <>
-                  <img src={item.src} alt="Images Item" />
+                  <img src={item.src} alt="Video Item" />
                   <input type="text" placeholder={item.placeholder} />
                 </>
               )}
