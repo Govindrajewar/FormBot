@@ -153,7 +153,7 @@ function Flow() {
                 ? "Image"
                 : item.type === "video"
                 ? "Video"
-                : "GIF"}
+                : "GIF"}{" "}
               {item.id}
             </div>
             <div className="item-data">
@@ -164,7 +164,7 @@ function Flow() {
                 </>
               ) : item.type === "image" ? (
                 <>
-                  <img src={item.src} alt="Image Item" />
+                  <img src={item.src} alt="Images Item" />
                   <input type="text" placeholder={item.placeholder} />
                 </>
               ) : item.type === "video" ? (
