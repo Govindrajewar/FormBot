@@ -29,6 +29,7 @@ function Flow() {
   const [emailInputItemCount, setEmailInputItemCount] = useState(0);
   const [phoneInputItemCount, setPhoneInputItemCount] = useState(0);
   const [dateInputItemCount, setDateInputItemCount] = useState(0);
+  const [rateInputItemCount, setRateInputItemCount] = useState(0);
 
   const handleAddTextItem = () => {
     const newTextItemId = textItemCount + 1;
@@ -155,6 +156,20 @@ function Flow() {
     setDateInputItemCount(newDateInputItemId);
   };
 
+  const handleAddRateInputItem = () => {
+    const newRateInputItemId = rateInputItemCount + 1;
+    setDynamicItems([
+      ...dynamicItems,
+      {
+        id: `${newRateInputItemId}`,
+        type: "rate-input",
+        src: ratingInput,
+        placeholder: "Hint : User will tap to rate out of 5",
+      },
+    ]);
+    setRateInputItemCount(newRateInputItemId);
+  };
+
   return (
     <div className="flow">
       <div className="flow-items">
@@ -201,7 +216,7 @@ function Flow() {
               <img src={dateInput} alt="Date Input" />
               Date
             </div>
-            <div className="bubble">
+            <div className="bubble" onClick={handleAddRateInputItem}>
               <img src={ratingInput} alt="Rating Input" />
               Rating
             </div>
@@ -240,6 +255,8 @@ function Flow() {
                 ? "Input Phone"
                 : item.type === "date-input"
                 ? "Input Date"
+                : item.type === "rate-input"
+                ? "Input Rate"
                 : "Unknown"}{" "}
               {item.id}
             </div>
@@ -291,6 +308,11 @@ function Flow() {
               ) : item.type === "date-input" ? (
                 <>
                   <img src={item.src} alt="Date Input" />
+                  <input type="text" placeholder={item.placeholder} disabled />
+                </>
+              ) : item.type === "rate-input" ? (
+                <>
+                  <img src={item.src} alt="Rate Input" />
                   <input type="text" placeholder={item.placeholder} disabled />
                 </>
               ) : (
