@@ -1,0 +1,10 @@
+.response {
+  height: 89.95%;
+  width: 100%;
+  background-color: #18171c;
+  color: #69696973;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
