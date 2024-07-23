@@ -3,6 +3,7 @@ import "../../style/Workspace/Theme.css";
 import light from "../../assets/Workspace/Theme/light.png";
 import dark from "../../assets/Workspace/Theme/dark.png";
 import blue from "../../assets/Workspace/Theme/blue.png";
+import icon from "../../assets/Workspace/Theme/icon.png";
 
 function Theme() {
   const addLightTheme = () => {
@@ -34,7 +35,13 @@ function Theme() {
         <img src={dark} alt="dark" onClick={addDarkTheme} />
         <img src={blue} alt="blue" onClick={addBlueTheme} />
       </div>
-      <div className="theme-setting light-theme" id="themeSettingsId"></div>
+      <div className="theme-setting light-theme" id="themeSettingsId">
+        <div className="hello-div">
+          <img src={icon} alt="icon" />
+          <div className="hello-text">Hello</div>
+        </div>
+        <div className="hi-div">Hi</div>
+      </div>
     </div>
   );
 }

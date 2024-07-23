@@ -55,3 +55,42 @@
 .blue-theme {
   background-color: #508c9b;
 }
+
+.hello-div {
+  /* background-color: #f7f8ff; */
+  display: flex;
+  width: fit-content;
+
+  position: relative;
+  top: 5%;
+  left: 5%;
+}
+
+.hello-text {
+  color: black;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  padding: 10px;
+  background-color: #f7f8ff;
+  border-radius: 6px;
+  width: 70px;
+  text-align: center;
+  margin-left: 10px;
+}
+
+.hi-div {
+  width: 50px;
+  background-color: #0042da;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #ffffff;
+  text-align: center;
+
+  position: relative;
+  top: 10%;
+  left: 90%;
+}
