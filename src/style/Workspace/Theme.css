@@ -2,6 +2,7 @@
   height: 89.95%;
   width: 100%;
   background-color: #18181b;
+  display: flex;
 }
 
 .theme-container {
@@ -36,4 +37,21 @@
 
 .theme-container img:hover {
   border: 5px solid skyblue;
+}
+
+.theme-setting {
+  width: 100%;
+  height: 100%;
+}
+
+.light-theme {
+  background-color: #ffffff;
+}
+
+.dark-theme {
+  background-color: #171923;
+}
+
+.blue-theme {
+  background-color: #508c9b;
 }
