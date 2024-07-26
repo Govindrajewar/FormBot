@@ -38,7 +38,7 @@ function Flow() {
     const newId = itemCounts[type] + 1;
     setDynamicItems([
       ...dynamicItems,
-      { id: `${newId}`, type, src, placeholder },
+      { id: `${type}-${newId}`, type, src, placeholder },
     ]);
     setItemCounts((prevCounts) => ({
       ...prevCounts,
@@ -194,30 +194,30 @@ function Flow() {
             />
             <div className="item-header">
               {item.type === "text"
-                ? "Text"
+                ? `Text ${item.id.split("-")[1]}`
                 : item.type === "image"
-                ? "Image"
+                ? `Image ${item.id.split("-")[1]}`
                 : item.type === "video"
-                ? "Video"
+                ? `Video ${item.id.split("-")[1]}`
                 : item.type === "gif"
-                ? "GIF"
+                ? `GIF ${item.id.split("-")[1]}`
                 : item.type === "textInput"
-                ? "Text Input"
+                ? `Input Text ${item.id.split("-")[1]}`
                 : item.type === "numberInput"
-                ? "Input Number"
+                ? `Input Number ${item.id.split("-")[1]}`
                 : item.type === "emailInput"
-                ? "Input Email"
+                ? `Input Email ${item.id.split("-")[1]}`
                 : item.type === "phoneInput"
-                ? "Input Phone"
+                ? `Input Phone ${item.id.split("-")[1]}`
                 : item.type === "dateInput"
-                ? "Input Date"
+                ? `Input Date ${item.id.split("-")[1]}`
                 : item.type === "rateInput"
-                ? "Input Rate"
+                ? `Input Rate ${item.id.split("-")[1]}`
                 : item.type === "buttonInput"
-                ? "Input Button"
-                : "Unknown"}{" "}
-              {item.id}
+                ? `Input Button ${item.id.split("-")[1]}`
+                : "Unknown"}
             </div>
+
             <div className="item-data">
               {item.type === "text" ? (
                 <>
