@@ -9,7 +9,8 @@ import { useNavigate } from "react-router-dom";
 function PostLogin() {
   const [isListVisible, setIsListVisible] = useState(false);
   const [isCreateFolder, setIsCreateFolder] = useState(false);
-  // const [newFolderName, setNewFolderName] = useState();
+  const [newFolderName, setNewFolderName] = useState("");
+  const [folders, setFolders] = useState([]);
 
   const navigate = useNavigate();
 
@@ -20,6 +21,19 @@ function PostLogin() {
   const handleLogout = () => {
     navigate("/");
   };
+
+  const handleCreateFolder = () => {
+    if (newFolderName.trim() !== "") {
+      setFolders([...folders, newFolderName]);
+      setNewFolderName("");
+      setIsCreateFolder(false);
+    }
+  };
+
+  // const handleDeleteFolder = (index) => {
+  //   const updatedFolders = folders.filter((_, i) => i !== index);
+  //   setFolders(updatedFolders);
+  // };
 
   return (
     <div className="workspace">
@@ -61,12 +75,17 @@ function PostLogin() {
           Create a folder
         </div>
         <div className="tabs">
-          <div className="tab">
-            Computer Networks{" "}
-            <span className="delete-icon">
-              <img src={deleteIcon} alt="delete Icon" />
-            </span>
-          </div>
+          {folders.map((folder, index) => (
+            <div className="tab" key={index}>
+              {folder}
+              <span
+                className="delete-icon"
+                // onClick={() => handleDeleteFolder(index)}
+              >
+                <img src={deleteIcon} alt="delete Icon" />
+              </span>
+            </div>
+          ))}
         </div>
       </div>
       <div className="create-typebot">
@@ -81,27 +100,28 @@ function PostLogin() {
         </div>
       </div>
 
-      {isCreateFolder ? (
+      {isCreateFolder && (
         <div className="createNewFolder">
           <label htmlFor="createFolderId">Create New Folder</label>
           <input
             type="text"
             id="createFolderId"
             placeholder="Enter folder name"
-            // onChange={(e) => setNewFolderName(e.target.value)}
+            value={newFolderName}
+            onChange={(e) => setNewFolderName(e.target.value)}
           />
           <div className="createNewFolder-buttons">
-            <div className="done-button">Done</div>
+            <div className="done-button" onClick={handleCreateFolder}>
+              Done
+            </div>
             <div
               className="cancel-button"
-              onClick={() => setIsCreateFolder(!isCreateFolder)}
+              onClick={() => setIsCreateFolder(false)}
             >
               Cancel
             </div>
           </div>
         </div>
-      ) : (
-        <></>
       )}
     </div>
   );

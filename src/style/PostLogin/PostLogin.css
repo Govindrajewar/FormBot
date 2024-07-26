@@ -105,7 +105,7 @@
 .tab {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   background-color: #333;
   color: white;
   border: none;
