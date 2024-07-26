@@ -62,6 +62,10 @@ function PostLogin() {
     }
   };
 
+  const createTypeBot = () => {
+    navigate("/Workspace");
+  };
+
   return (
     <div className="workspace" onClick={hideList}>
       <header className="workspace-header">
@@ -112,7 +116,7 @@ function PostLogin() {
           ))}
         </div>
       </div>
-      <div className="create-typebot">
+      <div className="create-typebot" onClick={createTypeBot}>
         <div className="typebot-button">
           <br />
           <br />
