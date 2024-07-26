@@ -1,16 +1,39 @@
+import { useState } from "react";
 import "../style/PostLogin/PostLogin.css";
 import addFolder from "../assets/PostLogin/addFolder.png";
 import drop from "../assets/PostLogin/drop.png";
 import deleteIcon from "../assets/PostLogin/delete.png";
+import upArrow from "../assets/PostLogin/upArrow.png";
 
 function PostLogin() {
+  const [isListVisible, setIsListVisible] = useState(false);
+
   return (
     <div className="workspace">
       <header className="workspace-header">
-        <div className="header-h1">
-          Dewank Rastogi's workspace
-          <img src={drop} alt="drop arrow" />
-        </div>
+        {isListVisible ? (
+          <>
+            <div
+              className="header-h1"
+              onClick={() => setIsListVisible(!isListVisible)}
+            >
+              Dewank Rastogi's workspace
+              <img src={upArrow} alt="Up arrow" />
+            </div>
+            <div className="header-settings">Settings</div>
+            <div className="header-logOut">Log Out</div>
+          </>
+        ) : (
+          <>
+            <div
+              className="header-h1"
+              onClick={() => setIsListVisible(!isListVisible)}
+            >
+              Dewank Rastogi's workspace
+              <img src={drop} alt="drop arrow" />
+            </div>
+          </>
+        )}
       </header>
       <div className="workspace-content">
         <div className="folder-button">

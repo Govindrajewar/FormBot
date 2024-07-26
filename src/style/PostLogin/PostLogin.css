@@ -11,6 +11,7 @@
 
 .workspace-header {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 10px;
@@ -27,8 +28,33 @@
   border: 1px solid #ccc;
   border-radius: 6px;
   color: #ffffffeb;
-  text-align: center;
-  width: fit-content;
+  text-align: start;
+  width: 250px;
+}
+
+.header-settings,
+.header-logOut {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  color: #ffffffeb;
+  text-align: start;
+  /* width: fit-content; */
+  width: 250px;
+  position: absolute;
+  background-color: #1d1d1d;
+}
+
+.header-settings {
+  top: 50px;
+}
+
+.header-logOut {
+  top: 90px;
+  color: #ffa54c;
 }
 
 .workspace-header img {
