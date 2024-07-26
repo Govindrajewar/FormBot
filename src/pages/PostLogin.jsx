@@ -4,9 +4,20 @@ import addFolder from "../assets/PostLogin/addFolder.png";
 import drop from "../assets/PostLogin/drop.png";
 import deleteIcon from "../assets/PostLogin/delete.png";
 import upArrow from "../assets/PostLogin/upArrow.png";
+import { useNavigate } from "react-router-dom";
 
 function PostLogin() {
   const [isListVisible, setIsListVisible] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleSettings = () => {
+    navigate("/settings");
+  };
+
+  const handleLogout = () => {
+    navigate("/");
+  };
 
   return (
     <div className="workspace">
@@ -20,8 +31,12 @@ function PostLogin() {
               Dewank Rastogi's workspace
               <img src={upArrow} alt="Up arrow" />
             </div>
-            <div className="header-settings">Settings</div>
-            <div className="header-logOut">Log Out</div>
+            <div className="header-settings" onClick={handleSettings}>
+              Settings
+            </div>
+            <div className="header-logOut" onClick={handleLogout}>
+              Log Out
+            </div>
           </>
         ) : (
           <>
