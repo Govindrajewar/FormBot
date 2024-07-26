@@ -6,6 +6,7 @@
   align-items: center;
   height: 50px;
   border-bottom: 1px solid gray;
+  width: 97.25%;
 }
 
 .header-container #formNameId {
@@ -36,6 +37,11 @@
 }
 
 .header-container .item-container .item:hover {
+  border: 1px solid #7ea6ff;
+  color: #7ea6ff;
+}
+
+.selected-item {
   border: 1px solid #7ea6ff;
   color: #7ea6ff;
 }
