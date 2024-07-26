@@ -9,7 +9,7 @@ import image from "../../assets/Workspace/Flow/Bubbles/image.png";
 import video from "../../assets/Workspace/Flow/Bubbles/video.png";
 import gif from "../../assets/Workspace/Flow/Bubbles/gif.png";
 
-// input Icons
+// Input Icons
 import textInput from "../../assets/Workspace/Flow/Inputs/text.png";
 import numberInput from "../../assets/Workspace/Flow/Inputs/number.png";
 import emailInput from "../../assets/Workspace/Flow/Inputs/email.png";
@@ -20,169 +20,34 @@ import buttonInput from "../../assets/Workspace/Flow/Inputs/button.png";
 
 function Flow() {
   const [dynamicItems, setDynamicItems] = useState([]);
-  const [textItemCount, setTextItemCount] = useState(0);
-  const [imageItemCount, setImageItemCount] = useState(0);
-  const [videoItemCount, setVideoItemCount] = useState(0);
-  const [gifItemCount, setGifItemCount] = useState(0);
-  const [textInputItemCount, setTextInputItemCount] = useState(0);
-  const [numberInputItemCount, setNumberInputItemCount] = useState(0);
-  const [emailInputItemCount, setEmailInputItemCount] = useState(0);
-  const [phoneInputItemCount, setPhoneInputItemCount] = useState(0);
-  const [dateInputItemCount, setDateInputItemCount] = useState(0);
-  const [rateInputItemCount, setRateInputItemCount] = useState(0);
-  const [buttonInputItemCount, setButtonInputItemCount] = useState(0);
+  const [itemCounts, setItemCounts] = useState({
+    text: 0,
+    image: 0,
+    video: 0,
+    gif: 0,
+    textInput: 0,
+    numberInput: 0,
+    emailInput: 0,
+    phoneInput: 0,
+    dateInput: 0,
+    rateInput: 0,
+    buttonInput: 0,
+  });
 
-  const handleAddTextItem = () => {
-    const newTextItemId = textItemCount + 1;
+  const handleAddItem = (type, src, placeholder) => {
+    const newId = itemCounts[type] + 1;
     setDynamicItems([
       ...dynamicItems,
-      {
-        id: `${newTextItemId}`,
-        type: "text",
-        placeholder: "Click here to edit",
-      },
+      { id: `${newId}`, type, src, placeholder },
     ]);
-    setTextItemCount(newTextItemId);
+    setItemCounts((prevCounts) => ({
+      ...prevCounts,
+      [type]: newId,
+    }));
   };
 
-  const handleAddImageItem = () => {
-    const newImageItemId = imageItemCount + 1;
-    setDynamicItems([
-      ...dynamicItems,
-      {
-        id: `${newImageItemId}`,
-        type: "image",
-        src: image,
-        placeholder: "Click to add link",
-      },
-    ]);
-    setImageItemCount(newImageItemId);
-  };
-
-  const handleAddVideoItem = () => {
-    const newVideoItemId = videoItemCount + 1;
-    setDynamicItems([
-      ...dynamicItems,
-      {
-        id: `${newVideoItemId}`,
-        type: "video",
-        src: video,
-        placeholder: "Click to add link",
-      },
-    ]);
-    setVideoItemCount(newVideoItemId);
-  };
-
-  const handleAddGifItem = () => {
-    const newGifItemId = gifItemCount + 1;
-    setDynamicItems([
-      ...dynamicItems,
-      {
-        id: `${newGifItemId}`,
-        type: "gif",
-        src: gif,
-        placeholder: "Click to add link",
-      },
-    ]);
-    setGifItemCount(newGifItemId);
-  };
-
-  const handleAddTextInputItem = () => {
-    const newTextInputItemId = textInputItemCount + 1;
-    setDynamicItems([
-      ...dynamicItems,
-      {
-        id: `${newTextInputItemId}`,
-        type: "text-input",
-        src: textInput,
-        placeholder: "Hint : User will input a text on his form",
-      },
-    ]);
-    setTextInputItemCount(newTextInputItemId);
-  };
-
-  const handleAddNumberInputItem = () => {
-    const newNumberInputItemId = numberInputItemCount + 1;
-    setDynamicItems([
-      ...dynamicItems,
-      {
-        id: `${newNumberInputItemId}`,
-        type: "number-input",
-        src: numberInput,
-        placeholder: "Hint : User will input a number on his form",
-      },
-    ]);
-    setNumberInputItemCount(newNumberInputItemId);
-  };
-
-  const handleAddEmailInputItem = () => {
-    const newEmailInputItemId = emailInputItemCount + 1;
-    setDynamicItems([
-      ...dynamicItems,
-      {
-        id: `${newEmailInputItemId}`,
-        type: "email-input",
-        src: emailInput,
-        placeholder: "Hint : User will input a email on his form",
-      },
-    ]);
-    setEmailInputItemCount(newEmailInputItemId);
-  };
-
-  const handleAddPhoneInputItem = () => {
-    const newPhoneInputItemId = phoneInputItemCount + 1;
-    setDynamicItems([
-      ...dynamicItems,
-      {
-        id: `${newPhoneInputItemId}`,
-        type: "phone-input",
-        src: phoneInput,
-        placeholder: "Hint : User will input a phone on his form",
-      },
-    ]);
-    setPhoneInputItemCount(newPhoneInputItemId);
-  };
-
-  const handleAddDateInputItem = () => {
-    const newDateInputItemId = dateInputItemCount + 1;
-    setDynamicItems([
-      ...dynamicItems,
-      {
-        id: `${newDateInputItemId}`,
-        type: "date-input",
-        src: dateInput,
-        placeholder: "Hint : User will select a date",
-      },
-    ]);
-    setDateInputItemCount(newDateInputItemId);
-  };
-
-  const handleAddRateInputItem = () => {
-    const newRateInputItemId = rateInputItemCount + 1;
-    setDynamicItems([
-      ...dynamicItems,
-      {
-        id: `${newRateInputItemId}`,
-        type: "rate-input",
-        src: ratingInput,
-        placeholder: "Hint : User will tap to rate out of 5",
-      },
-    ]);
-    setRateInputItemCount(newRateInputItemId);
-  };
-
-  const handleAddButtonInputItem = () => {
-    const newButtonInputItemId = buttonInputItemCount + 1;
-    setDynamicItems([
-      ...dynamicItems,
-      {
-        id: `${newButtonInputItemId}`,
-        type: "button-input",
-        src: buttonInput,
-        placeholder: " ",
-      },
-    ]);
-    setButtonInputItemCount(newButtonInputItemId);
+  const handleDeleteItem = (id) => {
+    setDynamicItems(dynamicItems.filter((item) => item.id !== id));
   };
 
   return (
@@ -191,19 +56,33 @@ function Flow() {
         <div className="flow-container">
           <div className="sub-header sub-header-bubbles">Bubbles</div>
           <div className="bubbles">
-            <div className="bubble" onClick={handleAddTextItem}>
+            <div
+              className="bubble"
+              onClick={() =>
+                handleAddItem("text", textBubble, "Click here to edit")
+              }
+            >
               <img src={textBubble} alt="Text Bubble" />
               Text
             </div>
-            <div className="bubble" onClick={handleAddImageItem}>
+            <div
+              className="bubble"
+              onClick={() => handleAddItem("image", image, "Click to add link")}
+            >
               <img src={image} alt="Images Bubble" />
               Image
             </div>
-            <div className="bubble" onClick={handleAddVideoItem}>
+            <div
+              className="bubble"
+              onClick={() => handleAddItem("video", video, "Click to add link")}
+            >
               <img src={video} alt="Video Bubble" />
               Video
             </div>
-            <div className="bubble" onClick={handleAddGifItem}>
+            <div
+              className="bubble"
+              onClick={() => handleAddItem("gif", gif, "Click to add link")}
+            >
               <img src={gif} alt="GIF Bubble" />
               GIF
             </div>
@@ -211,31 +90,88 @@ function Flow() {
 
           <div className="sub-header">Inputs</div>
           <div className="bubbles">
-            <div className="bubble" onClick={handleAddTextInputItem}>
+            <div
+              className="bubble"
+              onClick={() =>
+                handleAddItem(
+                  "textInput",
+                  textInput,
+                  "Hint: User will input text on the form"
+                )
+              }
+            >
               <img src={textInput} alt="Text Input" />
               Text
             </div>
-            <div className="bubble" onClick={handleAddNumberInputItem}>
+            <div
+              className="bubble"
+              onClick={() =>
+                handleAddItem(
+                  "numberInput",
+                  numberInput,
+                  "Hint: User will input a number on the form"
+                )
+              }
+            >
               <img src={numberInput} alt="Number Input" />
               Number
             </div>
-            <div className="bubble" onClick={handleAddEmailInputItem}>
+            <div
+              className="bubble"
+              onClick={() =>
+                handleAddItem(
+                  "emailInput",
+                  emailInput,
+                  "Hint: User will input an email on the form"
+                )
+              }
+            >
               <img src={emailInput} alt="Email Input" />
               Email
             </div>
-            <div className="bubble" onClick={handleAddPhoneInputItem}>
+            <div
+              className="bubble"
+              onClick={() =>
+                handleAddItem(
+                  "phoneInput",
+                  phoneInput,
+                  "Hint: User will input a phone number on the form"
+                )
+              }
+            >
               <img src={phoneInput} alt="Phone Input" />
               Phone
             </div>
-            <div className="bubble" onClick={handleAddDateInputItem}>
+            <div
+              className="bubble"
+              onClick={() =>
+                handleAddItem(
+                  "dateInput",
+                  dateInput,
+                  "Hint: User will select a date"
+                )
+              }
+            >
               <img src={dateInput} alt="Date Input" />
               Date
             </div>
-            <div className="bubble" onClick={handleAddRateInputItem}>
+            <div
+              className="bubble"
+              onClick={() =>
+                handleAddItem(
+                  "rateInput",
+                  ratingInput,
+                  "Hint: User will tap to rate out of 5"
+                )
+              }
+            >
               <img src={ratingInput} alt="Rating Input" />
               Rating
             </div>
-            <div className="bubble" onClick={handleAddButtonInputItem}>
+            <div
+              className="bubble"
+              onClick={() => handleAddItem("buttonInput", buttonInput, "")}
+            >
               <img src={buttonInput} alt="Button Input" />
               Button
             </div>
@@ -250,7 +186,12 @@ function Flow() {
         </div>
         {dynamicItems.map((item) => (
           <div className="text-item" key={item.id}>
-            <img src={deleteLogo} alt="delete" id="deleteId" />
+            <img
+              src={deleteLogo}
+              alt="delete"
+              id="deleteId"
+              onClick={() => handleDeleteItem(item.id)}
+            />
             <div className="item-header">
               {item.type === "text"
                 ? "Text"
@@ -260,19 +201,19 @@ function Flow() {
                 ? "Video"
                 : item.type === "gif"
                 ? "GIF"
-                : item.type === "text-input"
+                : item.type === "textInput"
                 ? "Text Input"
-                : item.type === "number-input"
+                : item.type === "numberInput"
                 ? "Input Number"
-                : item.type === "email-input"
+                : item.type === "emailInput"
                 ? "Input Email"
-                : item.type === "phone-input"
+                : item.type === "phoneInput"
                 ? "Input Phone"
-                : item.type === "date-input"
+                : item.type === "dateInput"
                 ? "Input Date"
-                : item.type === "rate-input"
+                : item.type === "rateInput"
                 ? "Input Rate"
-                : item.type === "button-input"
+                : item.type === "buttonInput"
                 ? "Input Button"
                 : "Unknown"}{" "}
               {item.id}
@@ -298,12 +239,12 @@ function Flow() {
                   <img src={item.src} alt="GIF Item" />
                   <input type="text" placeholder={item.placeholder} />
                 </>
-              ) : item.type === "text-input" ? (
+              ) : item.type === "textInput" ? (
                 <>
                   <img src={item.src} alt="Text Input" />
                   <input type="text" placeholder={item.placeholder} disabled />
                 </>
-              ) : item.type === "number-input" ? (
+              ) : item.type === "numberInput" ? (
                 <>
                   <img src={item.src} alt="Number Input" />
                   <input
@@ -312,27 +253,27 @@ function Flow() {
                     disabled
                   />
                 </>
-              ) : item.type === "email-input" ? (
+              ) : item.type === "emailInput" ? (
                 <>
                   <img src={item.src} alt="Email Input" />
                   <input type="email" placeholder={item.placeholder} disabled />
                 </>
-              ) : item.type === "phone-input" ? (
+              ) : item.type === "phoneInput" ? (
                 <>
                   <img src={item.src} alt="Phone Input" />
                   <input type="tel" placeholder={item.placeholder} disabled />
                 </>
-              ) : item.type === "date-input" ? (
+              ) : item.type === "dateInput" ? (
                 <>
                   <img src={item.src} alt="Date Input" />
                   <input type="text" placeholder={item.placeholder} disabled />
                 </>
-              ) : item.type === "rate-input" ? (
+              ) : item.type === "rateInput" ? (
                 <>
-                  <img src={item.src} alt="Rate Input" />
+                  <img src={item.src} alt="Rating Input" />
                   <input type="text" placeholder={item.placeholder} disabled />
                 </>
-              ) : item.type === "button-input" ? (
+              ) : item.type === "buttonInput" ? (
                 <>
                   <img src={item.src} alt="Button Input" />
                   <input
