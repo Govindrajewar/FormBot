@@ -42,7 +42,6 @@
   border-radius: 6px;
   color: #ffffffeb;
   text-align: start;
-  /* width: fit-content; */
   width: 250px;
   position: absolute;
   background-color: #1d1d1d;
@@ -173,7 +172,8 @@
   align-items: start;
 }
 
-.createNewFolder label {
+.createNewFolder label,
+#DeleteFolderId {
   font-size: 28px;
   font-weight: 600;
   line-height: 40px;
@@ -193,7 +193,8 @@
   outline: none;
 }
 
-.createNewFolder-buttons {
+.createNewFolder-buttons,
+.DeleteNewFolder-buttons {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -202,6 +203,7 @@
   width: 100%;
 }
 
+.confirm-button,
 .done-button,
 .cancel-button {
   font-size: 28px;
@@ -211,7 +213,30 @@
   cursor: pointer;
 }
 
+.confirm-button:hover,
 .done-button:hover,
 .cancel-button:hover {
   color: #4b83ff;
+}
+
+.DeleteNewFolder {
+  width: 500px;
+  height: fit-content;
+  border-radius: 25px;
+  background-color: #1d1d1d;
+  border: 1px solid #ccc;
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  padding: 30px 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.center-line {
+  font-size: 40px;
+  color: #47474a;
 }

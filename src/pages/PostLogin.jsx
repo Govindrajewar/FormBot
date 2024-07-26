@@ -11,6 +11,8 @@ function PostLogin() {
   const [isCreateFolder, setIsCreateFolder] = useState(false);
   const [newFolderName, setNewFolderName] = useState("");
   const [folders, setFolders] = useState([]);
+  const [isDeleteFolder, setIsDeleteFolder] = useState(false);
+  const [deleteIndexFolder, setDeleteIndexFolder] = useState(0);
 
   const navigate = useNavigate();
 
@@ -26,14 +28,33 @@ function PostLogin() {
     if (newFolderName.trim() !== "") {
       setFolders([...folders, newFolderName]);
       setNewFolderName("");
-      setIsCreateFolder(false);
+      setIsCreateFolder(!isCreateFolder);
     }
   };
 
-  // const handleDeleteFolder = (index) => {
-  //   const updatedFolders = folders.filter((_, i) => i !== index);
-  //   setFolders(updatedFolders);
-  // };
+  const deleteFolder = (deleteIndexFolder) => {
+    setIsDeleteFolder(!isDeleteFolder);
+    setDeleteIndexFolder(deleteIndexFolder);
+  };
+
+  const handleDeleteFolder = () => {
+    const updatedFolders = folders.filter((_, i) => i !== deleteIndexFolder);
+    setFolders(updatedFolders);
+    setIsDeleteFolder(!isDeleteFolder);
+  };
+
+  const cancelButton = () => {
+    setNewFolderName("");
+    setDeleteIndexFolder(0);
+
+    if (isCreateFolder) {
+      setIsCreateFolder(!isCreateFolder);
+    }
+
+    if (isDeleteFolder) {
+      setIsDeleteFolder(!isDeleteFolder);
+    }
+  };
 
   return (
     <div className="workspace">
@@ -78,10 +99,7 @@ function PostLogin() {
           {folders.map((folder, index) => (
             <div className="tab" key={index}>
               {folder}
-              <span
-                className="delete-icon"
-                // onClick={() => handleDeleteFolder(index)}
-              >
+              <span className="delete-icon" onClick={() => deleteFolder(index)}>
                 <img src={deleteIcon} alt="delete Icon" />
               </span>
             </div>
@@ -114,10 +132,26 @@ function PostLogin() {
             <div className="done-button" onClick={handleCreateFolder}>
               Done
             </div>
-            <div
-              className="cancel-button"
-              onClick={() => setIsCreateFolder(false)}
-            >
+            <div className="center-line">|</div>
+            <div className="cancel-button" onClick={cancelButton}>
+              Cancel
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isDeleteFolder && (
+        <div className="DeleteNewFolder">
+          <div id="DeleteFolderId">
+            Are you sure you want to delete this folder ?
+          </div>
+
+          <div className="DeleteNewFolder-buttons">
+            <div className="confirm-button" onClick={handleDeleteFolder}>
+              Confirm
+            </div>
+            <div className="center-line">|</div>
+            <div className="cancel-button" onClick={cancelButton}>
               Cancel
             </div>
           </div>
