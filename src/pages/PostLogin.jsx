@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 function PostLogin() {
   const [isListVisible, setIsListVisible] = useState(false);
+  const [isCreateFolder, setIsCreateFolder] = useState(false);
+  // const [newFolderName, setNewFolderName] = useState();
 
   const navigate = useNavigate();
 
@@ -51,7 +53,10 @@ function PostLogin() {
         )}
       </header>
       <div className="workspace-content">
-        <div className="folder-button">
+        <div
+          className="folder-button"
+          onClick={() => setIsCreateFolder(!isCreateFolder)}
+        >
           <img src={addFolder} alt="Add Folder" />
           Create a folder
         </div>
@@ -75,6 +80,29 @@ function PostLogin() {
           Create a typebot
         </div>
       </div>
+
+      {isCreateFolder ? (
+        <div className="createNewFolder">
+          <label htmlFor="createFolderId">Create New Folder</label>
+          <input
+            type="text"
+            id="createFolderId"
+            placeholder="Enter folder name"
+            // onChange={(e) => setNewFolderName(e.target.value)}
+          />
+          <div className="createNewFolder-buttons">
+            <div className="done-button">Done</div>
+            <div
+              className="cancel-button"
+              onClick={() => setIsCreateFolder(!isCreateFolder)}
+            >
+              Cancel
+            </div>
+          </div>
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

@@ -155,3 +155,63 @@
   width: 40px;
   font-size: 40px;
 }
+
+.createNewFolder {
+  width: 500px;
+  height: fit-content;
+  border-radius: 25px;
+  background-color: #1d1d1d;
+  border: 1px solid #ccc;
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  padding: 30px 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.createNewFolder label {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 40px;
+}
+
+.createNewFolder input {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 40px;
+  margin-top: 20px;
+  padding: 10px;
+  width: 90%;
+  color: white;
+  background-color: #1f1f23;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+}
+
+.createNewFolder-buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+  color: white;
+  width: 100%;
+}
+
+.done-button,
+.cancel-button {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 40px;
+  background-color: none;
+  cursor: pointer;
+}
+
+.done-button:hover,
+.cancel-button:hover {
+  color: #4b83ff;
+}
