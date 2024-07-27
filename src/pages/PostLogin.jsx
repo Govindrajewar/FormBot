@@ -98,33 +98,38 @@ function PostLogin() {
         )}
       </header>
       <div className="workspace-content">
-        <div
-          className="folder-button"
-          onClick={() => setIsCreateFolder(!isCreateFolder)}
-        >
-          <img src={addFolder} alt="Add Folder" />
-          Create a folder
+        <div className="workspace-folder-content">
+          <div
+            className="folder-button"
+            onClick={() => setIsCreateFolder(!isCreateFolder)}
+          >
+            <img src={addFolder} alt="Add Folder" />
+            Create a folder
+          </div>
+          <div className="tabs">
+            {folders.map((folder, index) => (
+              <div className="tab" key={index}>
+                {folder}
+                <span
+                  className="delete-icon"
+                  onClick={() => deleteFolder(index)}
+                >
+                  <img src={deleteIcon} alt="delete Icon" />
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="tabs">
-          {folders.map((folder, index) => (
-            <div className="tab" key={index}>
-              {folder}
-              <span className="delete-icon" onClick={() => deleteFolder(index)}>
-                <img src={deleteIcon} alt="delete Icon" />
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="create-typebot" onClick={createTypeBot}>
-        <div className="typebot-button">
-          <br />
-          <br />
-          <span className="plus-sign">+</span>
-          <br />
-          <br />
-          <br />
-          Create a typebot
+        <div className="create-typebot">
+          <div className="typebot-button" onClick={createTypeBot}>
+            <br />
+            <br />
+            <span className="plus-sign">+</span>
+            <br />
+            <br />
+            <br />
+            Create a typebot
+          </div>
         </div>
       </div>
 

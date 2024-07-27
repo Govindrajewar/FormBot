@@ -5,7 +5,8 @@
   text-align: center;
   background-color: #1e1e1e;
   color: white;
-  height: 100vh;
+  min-height: 100vh;
+  height: fit-content;
   width: 100vw;
 }
 
@@ -64,12 +65,18 @@
 
 .workspace-content {
   display: flex;
+  flex-direction: column;
+  padding-left: 200px;
+}
+
+.workspace-folder-content {
+  display: flex;
   flex-direction: row;
   justify-content: start;
   align-items: start;
   width: 100%;
   height: fit-content;
-  margin-top: 2%;
+  margin: 20px 0;
 }
 
 .folder-button {
@@ -82,12 +89,11 @@
   border-radius: 6px;
   padding: 10px 20px;
   cursor: pointer;
-  min-width: 175px;
+  min-width: 150px;
   font-size: 16px;
   font-weight: 600;
   line-height: 20px;
-  margin-left: 20%;
-  margin-right: 20px;
+  margin: 10px 10px 0 0;
 }
 
 .folder-button img {
@@ -110,8 +116,7 @@
   border: none;
   border-radius: 6px;
   padding: 10px 20px;
-  margin-left: 10px;
-  margin-bottom: 10px;
+  margin: 10px 10px 0 0;
   cursor: pointer;
   min-width: 200px;
   font-size: 16px;
@@ -127,12 +132,11 @@
 
 .create-typebot {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: start;
-  align-items: center;
-  width: 75%;
-  margin-left: 250px;
-  margin-top: 20px;
+  align-items: start;
+  width: 100%;
 }
 
 .typebot-button {
@@ -144,9 +148,9 @@
   cursor: pointer;
   font-size: 18px;
   font-weight: 400;
-  width: 175px;
-  height: 225px;
-  margin-left: 5%;
+  width: 150px;
+  height: 200px;
+  margin: 20px 20px 0 0;
 }
 
 .typebot-button .plus-sign {
