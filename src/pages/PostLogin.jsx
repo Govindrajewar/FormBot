@@ -67,7 +67,7 @@ function PostLogin() {
   };
 
   return (
-    <div className="workspace" onClick={hideList}>
+    <div className="PostLogin" onClick={hideList}>
       <header className="workspace-header">
         {isListVisible ? (
           <>
