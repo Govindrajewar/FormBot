@@ -49,10 +49,10 @@
   margin-top: 10px;
 }
 
-.signup #username,
-.signup #password,
-.signup #confirmpassword,
-.signup #email {
+.signup .signup-username,
+.signup .signup-password,
+.signup .signup-confirmpassword,
+.signup .signup-email {
   background-color: #121212;
   width: 350px;
   border: 1px solid #636364;
@@ -100,4 +100,14 @@
   left: 5%;
   height: 350px;
   width: 350px;
+}
+
+.error {
+  border: 2px solid red;
+  background-color: #121212;
+  width: 350px;
+}
+
+.errorMessage, .labelError {
+  color: red;
 }
