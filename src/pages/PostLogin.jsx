@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../style/PostLogin/PostLogin.css";
 import addFolder from "../assets/PostLogin/addFolder.png";
 import drop from "../assets/PostLogin/drop.png";
@@ -7,6 +7,15 @@ import upArrow from "../assets/PostLogin/upArrow.png";
 import { useNavigate } from "react-router-dom";
 
 function PostLogin() {
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    const storedUsername = localStorage.getItem("username");
+    if (storedUsername) {
+      setUsername(storedUsername);
+    }
+  }, []);
+
   const [isListVisible, setIsListVisible] = useState(false);
   const [isCreateFolder, setIsCreateFolder] = useState(false);
   const [newFolderName, setNewFolderName] = useState("");
@@ -75,7 +84,7 @@ function PostLogin() {
               className="header-h1"
               onClick={() => setIsListVisible(!isListVisible)}
             >
-              Dewank Rastogi's workspace
+              {username ? `${username}'s workspace` : "Your workspace"}
               <img src={upArrow} alt="Up arrow" />
             </div>
             <div className="header-settings" onClick={handleSettings}>
@@ -91,7 +100,7 @@ function PostLogin() {
               className="header-h1"
               onClick={() => setIsListVisible(!isListVisible)}
             >
-              Dewank Rastogi's workspace
+              {username ? `${username}'s workspace` : "Your workspace"}
               <img src={drop} alt="drop arrow" />
             </div>
           </>

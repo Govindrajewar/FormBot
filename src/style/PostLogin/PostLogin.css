@@ -30,7 +30,9 @@
   border-radius: 6px;
   color: #ffffffeb;
   text-align: start;
-  width: 250px;
+  min-width: 300px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .header-settings,
@@ -43,7 +45,7 @@
   border-radius: 6px;
   color: #ffffffeb;
   text-align: start;
-  width: 250px;
+  min-width: 300px;
   position: absolute;
   background-color: #1d1d1d;
 }

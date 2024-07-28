@@ -59,7 +59,8 @@ function Login() {
 
     if (user) {
       alert("Login successful!");
-      //TODO: Redirect or perform any additional logic
+      localStorage.setItem("username", user.username);
+      navigate("/postlogin");
     } else {
       setLoginError("Invalid email or password");
     }
