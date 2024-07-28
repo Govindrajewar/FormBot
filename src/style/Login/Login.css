@@ -46,10 +46,11 @@
   font-weight: 400;
   line-height: 17px;
   margin-top: 10px;
+  text-align: center;
 }
 
-.login #password,
-.login #email {
+.login .login-password,
+.login .login-email {
   background-color: #121212;
   width: 350px;
   border: 1px solid #636364;
@@ -97,4 +98,14 @@
   left: 5%;
   height: 350px;
   width: 350px;
+}
+
+.error {
+  border: 2px solid red;
+  background-color: #121212;
+  width: 350px;
+}
+
+.errorMessage, .labelError {
+  color: red;
 }
