@@ -1,7 +1,7 @@
 import "../../style/NavBar.css";
 import { useNavigate } from "react-router-dom";
 
-function NavBar() {
+function NavBar({ createFormBot }) {
   const navigate = useNavigate();
   const handleLogin = () => {
     navigate("/login");
@@ -26,7 +26,9 @@ function NavBar() {
         <button className="signIn-btn" onClick={handleLogin}>
           Sign in
         </button>
-        <button className="create-btn">Create a FormBot</button>
+        <button className="create-btn" onClick={createFormBot}>
+          Create a FormBot
+        </button>
       </div>
     </div>
   );

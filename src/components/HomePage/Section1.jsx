@@ -2,7 +2,7 @@ import "../../style/Section1.css";
 import triangleImg from "../../assets/triangle.png";
 import halfcircleImg from "../../assets/halfcircle.png";
 
-function Section1() {
+function Section1({ createFormBot }) {
   return (
     <div className="section1">
       <div className="section1-header">Build advanced chatbots visually</div>
@@ -12,7 +12,7 @@ function Section1() {
         like magic.
       </div>
       <div>
-        <button className="create-formBit-btn">
+        <button className="create-formBit-btn" onClick={createFormBot}>
           Create a FormBot for free
         </button>
       </div>

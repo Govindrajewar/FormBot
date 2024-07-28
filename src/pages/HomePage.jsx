@@ -8,19 +8,27 @@ import Section5 from "../components/HomePage/Section5";
 import Section6 from "../components/HomePage/Section6";
 import Section7 from "../components/HomePage/Section7";
 import Footer from "../components/HomePage/Footer";
+import { useNavigate } from "react-router-dom";
 
 function HomePage() {
+
+  const navigate = useNavigate();
+
+  const createFormBot = () => {
+    navigate("/postlogin");
+  }
+
   return (
     <div>
-      <NavBar />
-      <Section1 />
+      <NavBar createFormBot={createFormBot}/>
+      <Section1 createFormBot={createFormBot}/>
       <Section2 />
       <Section3 />
       <Section4 />
       <LogoSection />
       <Section5 />
       <Section6 />
-      <Section7 />
+      <Section7 createFormBot={createFormBot}/>
       <Footer />
     </div>
   );
