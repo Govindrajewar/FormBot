@@ -1,13 +1,19 @@
 import { useState } from "react";
 import "../../style/Workspace/WorkspaceNavBar.css";
 import close from "../../assets/Workspace/close.png";
+import { useNavigate } from "react-router-dom";
 
 function WorkspaceNavBar({ setActiveComponent }) {
+  const navigate = useNavigate();
   const [selectedItem, setSelectedItem] = useState("Flow");
 
   const handleItemClick = (item) => {
     setActiveComponent(item);
     setSelectedItem(item);
+  };
+
+  const handleShareForm = () => {
+    navigate("/desktop");
   };
 
   return (
@@ -38,7 +44,9 @@ function WorkspaceNavBar({ setActiveComponent }) {
         </div>
       </div>
       <div className="buttons">
-        <button className="share-btn">Share</button>
+        <button className="share-btn" onClick={handleShareForm}>
+          Share
+        </button>
         <button className="save-btn">Save</button>
         <img src={close} alt="close" />
       </div>

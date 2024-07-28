@@ -6,6 +6,7 @@ import Signup from "./pages/Signup";
 import Settings from "./pages/Settings";
 import Workspace from "./pages/Workspace";
 import PostLogin from "./pages/PostLogin";
+import Desktop from "./pages/Desktop";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/workspace" element={<Workspace />} />
+          <Route path="/desktop" element={<Desktop />} />
         </Routes>
       </BrowserRouter>
     </div>

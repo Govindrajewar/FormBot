@@ -86,6 +86,10 @@
   line-height: 17px;
 }
 
+.header-container .buttons .share-btn:hover {
+  background-color: #5a5f6b;
+}
+
 .header-container .buttons .save-btn {
   background-color: #848890;
   color: #ffffff;
@@ -93,5 +97,9 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
-  background: #4ade80cc;
+  background-color: #4ade80cc;
+}
+
+.header-container .buttons .save-btn:hover {
+  background-color: green;
 }
