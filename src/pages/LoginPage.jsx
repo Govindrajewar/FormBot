@@ -48,18 +48,18 @@ function LoginPage() {
     try {
       const response = await Login(email, password);
       if (response.status === 201) {
+        localStorage.setItem("userName", response.data.user.userName);
         alert("Login successful");
         navigate("/postlogin");
       }
     } catch (error) {
-      setLoginError(error);
+      setLoginError(error.message);
     }
   };
 
   return (
     <div className="login">
       <div className="login-form">
-        {" "}
         <label htmlFor="email" className={emailError ? "labelError" : ""}>
           Email
         </label>

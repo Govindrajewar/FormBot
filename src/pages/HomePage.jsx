@@ -11,24 +11,23 @@ import Footer from "../components/HomePage/Footer";
 import { useNavigate } from "react-router-dom";
 
 function HomePage() {
-
   const navigate = useNavigate();
 
   const createFormBot = () => {
-    navigate("/postlogin");
-  }
+    navigate("/login");
+  };
 
   return (
     <div>
-      <NavBar createFormBot={createFormBot}/>
-      <Section1 createFormBot={createFormBot}/>
+      <NavBar createFormBot={createFormBot} />
+      <Section1 createFormBot={createFormBot} />
       <Section2 />
       <Section3 />
       <Section4 />
       <LogoSection />
       <Section5 />
       <Section6 />
-      <Section7 createFormBot={createFormBot}/>
+      <Section7 createFormBot={createFormBot} />
       <Footer />
     </div>
   );

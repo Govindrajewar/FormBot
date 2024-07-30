@@ -7,10 +7,10 @@ import upArrow from "../assets/PostLogin/upArrow.png";
 import { useNavigate } from "react-router-dom";
 
 function PostLogin() {
-  const [username, setUsername] = useState("");
+  const [userName, setUsername] = useState("");
 
   useEffect(() => {
-    const storedUsername = localStorage.getItem("username");
+    const storedUsername = localStorage.getItem("userName");
     if (storedUsername) {
       setUsername(storedUsername);
     }
@@ -84,7 +84,7 @@ function PostLogin() {
               className="header-h1"
               onClick={() => setIsListVisible(!isListVisible)}
             >
-              {username ? `${username}'s workspace` : "Your workspace"}
+              {userName ? `${userName}'s workspace` : "Your workspace"}
               <img src={upArrow} alt="Up arrow" />
             </div>
             <div className="header-settings" onClick={handleSettings}>
@@ -100,7 +100,7 @@ function PostLogin() {
               className="header-h1"
               onClick={() => setIsListVisible(!isListVisible)}
             >
-              {username ? `${username}'s workspace` : "Your workspace"}
+              {userName ? `${userName}'s workspace` : "Your workspace"}
               <img src={drop} alt="drop arrow" />
             </div>
           </>
