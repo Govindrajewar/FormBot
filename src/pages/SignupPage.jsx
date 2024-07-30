@@ -5,40 +5,34 @@ import sideEllipse from "../assets/Signup/sideEllipse.png";
 import polygon from "../assets/Signup/polygon.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+// connect to server to Register User
+import { Register } from "../api/User.js";
 
-function Signup() {
+function SignupPage() {
   const navigate = useNavigate();
   const handleArrowBack = () => {
     navigate("/");
   };
 
-  const [userData, setUserData] = useState({
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
+  const [userName, setUserName] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [confirmPassword, setConfirmPassword] = useState();
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [usernameError, setUsernameError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
-
-  const handleChange = (e) => {
-    setUserData({ ...userData, [e.target.name]: e.target.value });
-  };
 
   const validateEmail = (email) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test(email);
   };
 
-  const handleSignup = () => {
-    const { username, email, password, confirmPassword } = userData;
-
+  const handleSignup = async () => {
     let isValid = true;
 
-    if (!username) {
-      setUsernameError("Username cannot be empty.");
+    if (!userName) {
+      setUsernameError("userName cannot be empty.");
       isValid = false;
     } else {
       setUsernameError("");
@@ -78,25 +72,31 @@ function Signup() {
     setUsernameError("");
     setConfirmPasswordError("");
 
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    users.push({ username, email, password });
-    localStorage.setItem("users", JSON.stringify(users));
+    try {
+      const response = await Register(userName, email, password);
+      if (response.status === 201) {
+        alert("Registration successful");
+      }
+    } catch (error) {
+      console.error("Registration error:", error);
+    }
+
     navigate("/login");
   };
 
   return (
     <div className="signup">
       <div className="signup-form">
-        <label htmlFor="username" className={usernameError ? "labelError" : ""}>
+        <label htmlFor="userName" className={usernameError ? "labelError" : ""}>
           Username
         </label>
         <br />
         <input
           type="text"
-          name="username"
-          placeholder="Enter a username"
-          value={userData.username}
-          onChange={handleChange}
+          name="userName"
+          placeholder="Enter a userName"
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
           className={usernameError ? "error" : "signup-username"}
         />
         <br />
@@ -110,8 +110,8 @@ function Signup() {
           type="email"
           name="email"
           placeholder="Enter your email"
-          value={userData.email}
-          onChange={handleChange}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           className={emailError ? "error" : "signup-email"}
         />
         <br />
@@ -125,8 +125,8 @@ function Signup() {
           type="password"
           name="password"
           placeholder="**********"
-          value={userData.password}
-          onChange={handleChange}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           className={passwordError ? "error" : "signup-password"}
         />
         <br />
@@ -143,8 +143,8 @@ function Signup() {
           type="password"
           name="confirmPassword"
           placeholder="**********"
-          value={userData.confirmPassword}
-          onChange={handleChange}
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
           className={confirmPasswordError ? "error" : "signup-confirmpassword"}
         />
         <br />
@@ -174,4 +174,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default SignupPage;

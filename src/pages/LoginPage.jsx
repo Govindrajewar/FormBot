@@ -5,36 +5,27 @@ import sideEllipse from "../assets/Login/sideEllipse.png";
 import polygon from "../assets/Login/polygon.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+// connect to server to validate User
+import { Login } from "../api/User.js";
 
-function Login() {
+function LoginPage() {
   const navigate = useNavigate();
   const handleArrowBack = () => {
     navigate("/");
   };
 
-  const [credentials, setCredentials] = useState({
-    email: "",
-    password: "",
-  });
-
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [loginError, setLoginError] = useState("");
-
-  const handleChange = (e) => {
-    setCredentials({ ...credentials, [e.target.name]: e.target.value });
-    setEmailError("");
-    setPasswordError("");
-    setLoginError("");
-  };
 
   const validateEmail = (email) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test(email);
   };
 
-  const handleLogin = () => {
-    const { email, password } = credentials;
+  const handleLogin = async () => {
     let isValid = true;
 
     if (!email) {
@@ -52,17 +43,16 @@ function Login() {
 
     if (!isValid) return;
 
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    const user = users.find(
-      (user) => user.email === email && user.password === password
-    );
+    console.log("Login with:", { email, password });
 
-    if (user) {
-      alert("Login successful!");
-      localStorage.setItem("username", user.username);
-      navigate("/postlogin");
-    } else {
-      setLoginError("Invalid email or password");
+    try {
+      const response = await Login(email, password);
+      if (response.status === 201) {
+        alert("Login successful");
+        navigate("/postlogin");
+      }
+    } catch (error) {
+      setLoginError(error);
     }
   };
 
@@ -78,8 +68,8 @@ function Login() {
           type="email"
           name="email"
           placeholder="Enter your email"
-          value={credentials.email}
-          onChange={handleChange}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           className={emailError ? "error" : "login-email"}
         />
         {emailError && <div className="errorMessage">{emailError}</div>}
@@ -92,8 +82,8 @@ function Login() {
           type="password"
           name="password"
           placeholder="**********"
-          value={credentials.password}
-          onChange={handleChange}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           className={passwordError ? "error" : "login-password"}
         />
         {passwordError && <div className="errorMessage">{passwordError}</div>}
@@ -120,4 +110,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginPage;
