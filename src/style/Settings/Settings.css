@@ -8,11 +8,12 @@
   align-items: center;
 }
 
-.settings h2 {
+.settings-h2 {
   position: absolute;
   top: 50px;
   font-size: 22px;
   line-height: 30px;
+  font-weight: bold;
 }
 
 .settings .data-container {
@@ -74,4 +75,10 @@
   font-weight: 500;
   margin-left: 10px;
   color: #cf3636;
+}
+
+.settings-error {
+  color: red;
+  text-align: start;
+  width: 550px;
 }
