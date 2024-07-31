@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "../../style/Workspace/Flow.css";
 import start from "../../assets/Workspace/Flow/start.png";
 import deleteLogo from "../../assets/Workspace/Flow/delete.png";
@@ -18,7 +19,7 @@ import dateInput from "../../assets/Workspace/Flow/Inputs/date.png";
 import ratingInput from "../../assets/Workspace/Flow/Inputs/rating.png";
 import buttonInput from "../../assets/Workspace/Flow/Inputs/button.png";
 
-function Flow() {
+function Flow({ formName }) {
   const [dynamicItems, setDynamicItems] = useState([]);
   const [itemCounts, setItemCounts] = useState({
     text: 0,
@@ -34,26 +35,29 @@ function Flow() {
     buttonInput: 0,
   });
 
-  // TODO: Delete this
-  console.log("Updated dynamic Items List: ", dynamicItems);
+  // eslint-disable-next-line
+  const [user, setUser] = useState({
+    userId: "12345",
+    username: "john_doe",
+    email: "john@example.com",
+  });
 
   const handleAddItem = (type, src, placeholder) => {
-    setItemCounts((prevCounts) => {
-      const newCounts = { ...prevCounts };
-      if (newCounts[type]) {
-        newCounts[type]++;
-      } else {
-        newCounts[type] = 1;
-      }
-
-      return newCounts;
-    });
-
     const newId = itemCounts[type] + 1;
-    setDynamicItems([
-      ...dynamicItems,
-      { id: `${type}-${newId}`, type, src, placeholder, value: "" },
-    ]);
+    const newItem = {
+      id: `${type}-${newId}`,
+      type,
+      src,
+      placeholder,
+      value: "",
+    };
+
+    setItemCounts((prevCounts) => ({
+      ...prevCounts,
+      [type]: newId,
+    }));
+
+    setDynamicItems((prevItems) => [...prevItems, newItem]);
   };
 
   const handleDeleteItem = (idToDelete) => {
@@ -66,6 +70,27 @@ function Flow() {
         item.id === id ? { ...item, value: newValue } : item
       )
     );
+  };
+
+  const handleSave = () => {
+    const dataToSave = {
+      formName,
+      user,
+      itemList: dynamicItems,
+    };
+
+    // TODO: Delete this
+    console.log(dataToSave);
+
+    // TODO: Move following code to /api/DynamicItems
+    axios
+      .post("http://localhost:4001/dynamic-items", dataToSave)
+      .then((response) => {
+        console.log("Items saved:", response.data);
+      })
+      .catch((error) => {
+        console.error("There was an error saving the items!", error);
+      });
   };
 
   return (
@@ -361,6 +386,10 @@ function Flow() {
           </div>
         ))}
       </div>
+
+      <button onClick={handleSave} className="save-button">
+        Save
+      </button>
     </div>
   );
 }

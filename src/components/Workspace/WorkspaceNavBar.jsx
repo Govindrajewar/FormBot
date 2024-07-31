@@ -3,7 +3,7 @@ import "../../style/Workspace/WorkspaceNavBar.css";
 import close from "../../assets/Workspace/close.png";
 import { useNavigate } from "react-router-dom";
 
-function WorkspaceNavBar({ setActiveComponent }) {
+function WorkspaceNavBar({ setActiveComponent, formName, setFormName }) {
   const navigate = useNavigate();
   const [selectedItem, setSelectedItem] = useState("Flow");
 
@@ -23,7 +23,13 @@ function WorkspaceNavBar({ setActiveComponent }) {
   return (
     <div className="header-container">
       <div className="form-name">
-        <input type="text" placeholder="Enter Form Name" id="formNameId" />
+        <input
+          type="text"
+          placeholder="Enter Form Name"
+          id="formNameId"
+          value={formName}
+          onChange={(e) => setFormName(e.target.value)}
+        />
       </div>
       <div className="item-container">
         <div

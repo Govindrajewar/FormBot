@@ -7,10 +7,16 @@ import Response from "../components/Workspace/Response.jsx";
 
 function Workspace() {
   const [activeComponent, setActiveComponent] = useState("Flow");
+  const [formName, setFormName] = useState("");
+
   return (
     <div className="workspace">
-      <WorkspaceNavBar setActiveComponent={setActiveComponent} />
-      {activeComponent === "Flow" && <Flow />}
+      <WorkspaceNavBar
+        setActiveComponent={setActiveComponent}
+        formName={formName}
+        setFormName={setFormName}
+      />
+      {activeComponent === "Flow" && <Flow formName={formName} />}
       {activeComponent === "Theme" && <Theme />}
       {activeComponent === "Response" && <Response />}
     </div>
