@@ -16,6 +16,10 @@ function WorkspaceNavBar({ setActiveComponent }) {
     navigate("/desktop");
   };
 
+  const handleClose = () => {
+    navigate("/postlogin");
+  };
+
   return (
     <div className="header-container">
       <div className="form-name">
@@ -48,7 +52,7 @@ function WorkspaceNavBar({ setActiveComponent }) {
           Share
         </button>
         <button className="save-btn">Save</button>
-        <img src={close} alt="close" />
+        <img src={close} alt="close" onClick={handleClose} />
       </div>
     </div>
   );

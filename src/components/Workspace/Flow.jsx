@@ -34,20 +34,38 @@ function Flow() {
     buttonInput: 0,
   });
 
+  // TODO: Delete this
+  console.log("Updated dynamic Items List: ", dynamicItems);
+
   const handleAddItem = (type, src, placeholder) => {
+    setItemCounts((prevCounts) => {
+      const newCounts = { ...prevCounts };
+      if (newCounts[type]) {
+        newCounts[type]++;
+      } else {
+        newCounts[type] = 1;
+      }
+
+      return newCounts;
+    });
+
     const newId = itemCounts[type] + 1;
     setDynamicItems([
       ...dynamicItems,
-      { id: `${type}-${newId}`, type, src, placeholder },
+      { id: `${type}-${newId}`, type, src, placeholder, value: "" },
     ]);
-    setItemCounts((prevCounts) => ({
-      ...prevCounts,
-      [type]: newId,
-    }));
   };
 
-  const handleDeleteItem = (id) => {
-    setDynamicItems(dynamicItems.filter((item) => item.id !== id));
+  const handleDeleteItem = (idToDelete) => {
+    setDynamicItems(dynamicItems.filter((item) => item.id !== idToDelete));
+  };
+
+  const handleInputChange = (id, newValue) => {
+    setDynamicItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id ? { ...item, value: newValue } : item
+      )
+    );
   };
 
   return (
@@ -222,27 +240,53 @@ function Flow() {
               {item.type === "text" ? (
                 <>
                   <img src={textBubble} alt="Text Bubble" />
-                  <input type="text" placeholder={item.placeholder} />
+                  <input
+                    type="text"
+                    placeholder={item.placeholder}
+                    value={item.value}
+                    onChange={(e) => handleInputChange(item.id, e.target.value)}
+                  />
                 </>
               ) : item.type === "image" ? (
                 <>
                   <img src={item.src} alt="Images Item" />
-                  <input type="text" placeholder={item.placeholder} />
+                  <input
+                    type="text"
+                    placeholder={item.placeholder}
+                    value={item.value}
+                    onChange={(e) => handleInputChange(item.id, e.target.value)}
+                  />
                 </>
               ) : item.type === "video" ? (
                 <>
                   <img src={item.src} alt="Video Item" />
-                  <input type="text" placeholder={item.placeholder} />
+                  <input
+                    type="text"
+                    placeholder={item.placeholder}
+                    value={item.value}
+                    onChange={(e) => handleInputChange(item.id, e.target.value)}
+                  />
                 </>
               ) : item.type === "gif" ? (
                 <>
                   <img src={item.src} alt="GIF Item" />
-                  <input type="text" placeholder={item.placeholder} />
+                  <input
+                    type="text"
+                    placeholder={item.placeholder}
+                    value={item.value}
+                    onChange={(e) => handleInputChange(item.id, e.target.value)}
+                  />
                 </>
               ) : item.type === "textInput" ? (
                 <>
                   <img src={item.src} alt="Text Input" />
-                  <input type="text" placeholder={item.placeholder} disabled />
+                  <input
+                    type="text"
+                    placeholder={item.placeholder}
+                    value={item.value}
+                    onChange={(e) => handleInputChange(item.id, e.target.value)}
+                    disabled
+                  />
                 </>
               ) : item.type === "numberInput" ? (
                 <>
@@ -250,28 +294,54 @@ function Flow() {
                   <input
                     type="number"
                     placeholder={item.placeholder}
+                    value={item.value}
+                    onChange={(e) => handleInputChange(item.id, e.target.value)}
                     disabled
                   />
                 </>
               ) : item.type === "emailInput" ? (
                 <>
                   <img src={item.src} alt="Email Input" />
-                  <input type="email" placeholder={item.placeholder} disabled />
+                  <input
+                    type="email"
+                    placeholder={item.placeholder}
+                    value={item.value}
+                    onChange={(e) => handleInputChange(item.id, e.target.value)}
+                    disabled
+                  />
                 </>
               ) : item.type === "phoneInput" ? (
                 <>
                   <img src={item.src} alt="Phone Input" />
-                  <input type="tel" placeholder={item.placeholder} disabled />
+                  <input
+                    type="tel"
+                    placeholder={item.placeholder}
+                    value={item.value}
+                    onChange={(e) => handleInputChange(item.id, e.target.value)}
+                    disabled
+                  />
                 </>
               ) : item.type === "dateInput" ? (
                 <>
                   <img src={item.src} alt="Date Input" />
-                  <input type="text" placeholder={item.placeholder} disabled />
+                  <input
+                    type="text"
+                    placeholder={item.placeholder}
+                    value={item.value}
+                    onChange={(e) => handleInputChange(item.id, e.target.value)}
+                    disabled
+                  />
                 </>
               ) : item.type === "rateInput" ? (
                 <>
                   <img src={item.src} alt="Rating Input" />
-                  <input type="text" placeholder={item.placeholder} disabled />
+                  <input
+                    type="text"
+                    placeholder={item.placeholder}
+                    value={item.value}
+                    onChange={(e) => handleInputChange(item.id, e.target.value)}
+                    disabled
+                  />
                 </>
               ) : item.type === "buttonInput" ? (
                 <>
@@ -279,6 +349,8 @@ function Flow() {
                   <input
                     type="button"
                     placeholder={item.placeholder}
+                    value={item.value}
+                    onChange={(e) => handleInputChange(item.id, e.target.value)}
                     disabled
                   />
                 </>
