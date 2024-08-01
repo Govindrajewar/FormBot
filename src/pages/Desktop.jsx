@@ -60,7 +60,7 @@ function Desktop() {
     <div className="desktop">
       <div className="chat-container">
         {filteredData.length > 0 ? (
-          filteredData.map((form) =>{
+          filteredData.map((form) => {
             let isEmpty = false;
             return form.itemList.map((item, index) => {
               if (isEmpty) return null;
@@ -70,53 +70,53 @@ function Desktop() {
               if (isInputEmpty) isEmpty = true;
 
               return (
-              <div
-                key={index}
-                className={`data-container ${
-                  item.type === "textInput" ? "right" : "left"
-                }`}
-              >
-                {item.type !== "textInput" ? (
-                  <>
-                    <img src={icon} alt="icon" className="data-icon" />
-                    <p className="chat-bubble">{item.value}</p>
-                  </>
-                ) : (
-                  <>
-                    {item.value ? (
-                      <div className="text-input-container">
-                        <input
-                          type="text"
-                          value={item.value}
-                          className="text-input-dark"
-                          disabled
-                        />
-                        <button className="submit-button-dark" disabled>
-                          <img src={send} alt="Send" />
-                        </button>
-                      </div>
-                    ) : (
-                      <div className="text-input-container">
-                        <input
-                          type="text"
-                          placeholder="Enter your text"
-                          className="text-input"
-                          value={inputValues[index] || ""}
-                          onChange={(e) =>
-                            handleInputChange(index, e.target.value)
-                          }
-                        />
-                        <button
-                          className="submit-button"
-                          onClick={() => handleFormSubmit(index)}
-                        >
-                          <img src={send} alt="Send" />
-                        </button>
-                      </div>
-                    )}
-                  </>
-                )}
-              </div>
+                <div
+                  key={index}
+                  className={`data-container ${
+                    item.type === "textInput" ? "right" : "left"
+                  }`}
+                >
+                  {item.type !== "textInput" ? (
+                    <>
+                      <img src={icon} alt="icon" className="data-icon" />
+                      <p className="chat-bubble">{item.value}</p>
+                    </>
+                  ) : (
+                    <>
+                      {item.value ? (
+                        <div className="text-input-container">
+                          <input
+                            type="text"
+                            value={item.value}
+                            className="text-input-dark"
+                            disabled
+                          />
+                          <button className="submit-button-dark" disabled>
+                            <img src={send} alt="Send" />
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="text-input-container">
+                          <input
+                            type="text"
+                            placeholder="Enter your text"
+                            className="text-input"
+                            value={inputValues[index] || ""}
+                            onChange={(e) =>
+                              handleInputChange(index, e.target.value)
+                            }
+                          />
+                          <button
+                            className="submit-button"
+                            onClick={() => handleFormSubmit(index)}
+                          >
+                            <img src={send} alt="Send" />
+                          </button>
+                        </div>
+                      )}
+                    </>
+                  )}
+                </div>
               );
             });
           })
