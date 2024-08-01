@@ -114,3 +114,10 @@
   height: 40px;
   width: 40px;
 }
+
+.data-image,
+.data-video {
+  height: 300px;
+  width: 500px;
+  border: 1px solid black;
+}

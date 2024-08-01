@@ -84,6 +84,12 @@ function Desktop() {
                         className="data-image"
                       />
                     </>
+                  ) : item.type === "video" ? (
+                    <>
+                      <video src={item.value} controls className="data-video">
+                        Your browser does not support the video tag.
+                      </video>
+                    </>
                   ) : item.type !== "textInput" ? (
                     <>
                       <img src={icon} alt="icon" className="data-icon" />
