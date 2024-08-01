@@ -1,6 +1,81 @@
 .desktop {
   height: 100vh;
   width: 100vw;
-  background-color: aliceblue;
-  color: black;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  margin: 0 5%;
+  background-color: aquamarine;
+}
+
+.chat-bubble {
+  background-color: #f1f1f1;
+  border-radius: 20px;
+  padding: 10px 20px;
+  max-width: 80%;
+}
+
+.chat-bubble p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.data-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.data-container.left {
+  justify-content: flex-start;
+}
+
+.data-container.right {
+  justify-content: flex-end;
+}
+
+.data-icon {
+  height: 30px;
+  margin-right: 10px;
+}
+
+.text-input-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.text-input-label {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.text-input {
+  flex-grow: 1;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 200px;
+  height: 30px;
+}
+
+.submit-button {
+  background-color: #1a5fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+}
+
+.submit-button img {
+  width: 20px;
+  height: 20px;
 }
