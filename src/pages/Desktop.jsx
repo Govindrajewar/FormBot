@@ -9,6 +9,7 @@ function Desktop() {
   const [inputValues, setInputValues] = useState({});
   const [errors, setErrors] = useState({});
   const [visibleItems, setVisibleItems] = useState(0);
+  const [isDisabled, setIsDisabled] = useState({});
 
   useEffect(() => {
     axios
@@ -55,6 +56,12 @@ function Desktop() {
       } else {
         setErrors({ ...errors, [index]: "Invalid date" });
       }
+    } else if (type === "ratingInput") {
+      if (validateRating(value)) {
+        setErrors({ ...errors, [index]: null });
+      } else {
+        setErrors({ ...errors, [index]: "Invalid rating" });
+      }
     } else {
       setErrors({ ...errors, [index]: null });
     }
@@ -69,12 +76,14 @@ function Desktop() {
           item.type === "numberInput" ||
           item.type === "emailInput" ||
           item.type === "phoneInput" ||
-          item.type === "dateInput")
+          item.type === "dateInput" ||
+          item.type === "ratingInput")
           ? { ...item, value: inputValues[index] || "" }
           : item
       ),
     }));
     setData(updatedData);
+    setIsDisabled({ ...isDisabled, [index]: true });
   };
 
   const validateEmail = (email) => {
@@ -92,8 +101,12 @@ function Desktop() {
     return re.test(date);
   };
 
+  const validateRating = (rating) => {
+    return rating >= 1 && rating <= 5;
+  };
+
   const filteredData = data
-    .filter((form) => form.formName === "input testing")
+    .filter((form) => form.formName === "Rating Input")
     .map((form) => ({
       ...form,
       itemList: form.itemList.slice(0, visibleItems),
@@ -113,7 +126,8 @@ function Desktop() {
                   item.type === "numberInput" ||
                   item.type === "emailInput" ||
                   item.type === "phoneInput" ||
-                  item.type === "dateInput") &&
+                  item.type === "dateInput" ||
+                  item.type === "ratingInput") &&
                 !inputValues[index];
               if (isInputEmpty) isEmpty = true;
 
@@ -125,7 +139,8 @@ function Desktop() {
                     item.type === "numberInput" ||
                     item.type === "emailInput" ||
                     item.type === "phoneInput" ||
-                    item.type === "dateInput"
+                    item.type === "dateInput" ||
+                    item.type === "ratingInput"
                       ? "right"
                       : "left"
                   }`}
@@ -148,7 +163,8 @@ function Desktop() {
                     item.type !== "numberInput" &&
                     item.type !== "emailInput" &&
                     item.type !== "phoneInput" &&
-                    item.type !== "dateInput" ? (
+                    item.type !== "dateInput" &&
+                    item.type !== "ratingInput" ? (
                     <>
                       <img src={icon} alt="icon" className="data-icon" />
                       <p className="chat-bubble">{item.value}</p>
@@ -157,101 +173,149 @@ function Desktop() {
                     <>
                       {item.value ? (
                         <div className="text-input-container">
-                          <input
-                            type={
-                              item.type === "textInput"
-                                ? "text"
-                                : item.type === "numberInput"
-                                ? "number"
-                                : item.type === "emailInput"
-                                ? "email"
-                                : item.type === "phoneInput"
-                                ? "tel"
-                                : "date"
-                            }
-                            value={item.value}
-                            className={
-                              item.type === "textInput"
-                                ? "text-input-dark"
-                                : item.type === "numberInput"
-                                ? "number-input-dark"
-                                : item.type === "emailInput"
-                                ? "email-input-dark"
-                                : item.type === "phoneInput"
-                                ? "phone-input-dark"
-                                : "date-input-dark"
-                            }
-                            disabled
-                          />
+                          {item.type === "ratingInput" ? (
+                            <div
+                              className={`rating-container ${
+                                isDisabled[index]
+                                  ? "disabled rating-container-dark"
+                                  : ""
+                              }`}
+                            >
+                              {[1, 2, 3, 4, 5].map((rating) => (
+                                <div
+                                  key={rating}
+                                  className={`rating-option ${
+                                    inputValues[index] === rating
+                                      ? "selected"
+                                      : ""
+                                  }`}
+                                  onClick={() =>
+                                    !isDisabled[index] &&
+                                    handleInputChange(index, rating, item.type)
+                                  }
+                                >
+                                  {rating}
+                                </div>
+                              ))}
+                            </div>
+                          ) : (
+                            <input
+                              type={
+                                item.type === "textInput"
+                                  ? "text"
+                                  : item.type === "numberInput"
+                                  ? "number"
+                                  : item.type === "emailInput"
+                                  ? "email"
+                                  : item.type === "phoneInput"
+                                  ? "tel"
+                                  : "date"
+                              }
+                              value={item.value}
+                              className={
+                                item.type === "textInput"
+                                  ? "text-input-dark"
+                                  : item.type === "numberInput"
+                                  ? "number-input-dark"
+                                  : item.type === "emailInput"
+                                  ? "email-input-dark"
+                                  : item.type === "phoneInput"
+                                  ? "phone-input-dark"
+                                  : item.type === "dateInput"
+                                  ? "date-input-dark"
+                                  : "rating-input-dark"
+                              }
+                              disabled
+                            />
+                          )}
                           <button className="submit-button-dark" disabled>
                             <img src={send} alt="Send" />
                           </button>
                         </div>
                       ) : (
                         <div className="text-input-container">
-                          <input
-                            type={
-                              item.type === "textInput"
-                                ? "text"
-                                : item.type === "numberInput"
-                                ? "number"
-                                : item.type === "emailInput"
-                                ? "email"
-                                : item.type === "phoneInput"
-                                ? "tel"
-                                : "date"
-                            }
-                            placeholder={
-                              item.type === "textInput"
-                                ? "Enter your text"
-                                : item.type === "numberInput"
-                                ? "Enter your number"
-                                : item.type === "emailInput"
-                                ? "Enter your email"
-                                : item.type === "phoneInput"
-                                ? "Enter your phone number"
-                                : "Enter a date"
-                            }
-                            className={
-                              item.type === "textInput"
-                                ? "text-input"
-                                : item.type === "numberInput"
-                                ? "number-input"
-                                : item.type === "emailInput"
-                                ? "email-input"
-                                : item.type === "phoneInput"
-                                ? "phone-input"
-                                : "date-input"
-                            }
-                            value={inputValues[index] || ""}
-                            onChange={(e) =>
-                              handleInputChange(
-                                index,
-                                e.target.value,
-                                item.type
-                              )
-                            }
-                          />
+                          {item.type === "ratingInput" ? (
+                            <div
+                              className={`rating-container ${
+                                isDisabled[index] ? "disabled" : ""
+                              }`}
+                            >
+                              {[1, 2, 3, 4, 5].map((rating) => (
+                                <div
+                                  key={rating}
+                                  className={`rating-option ${
+                                    inputValues[index] === rating
+                                      ? "selected"
+                                      : ""
+                                  }`}
+                                  onClick={() =>
+                                    !isDisabled[index] &&
+                                    handleInputChange(index, rating, item.type)
+                                  }
+                                >
+                                  {rating}
+                                </div>
+                              ))}
+                            </div>
+                          ) : (
+                            <input
+                              type={
+                                item.type === "textInput"
+                                  ? "text"
+                                  : item.type === "numberInput"
+                                  ? "number"
+                                  : item.type === "emailInput"
+                                  ? "email"
+                                  : item.type === "phoneInput"
+                                  ? "tel"
+                                  : "date"
+                              }
+                              placeholder={
+                                item.type === "textInput"
+                                  ? "Enter your text"
+                                  : item.type === "numberInput"
+                                  ? "Enter your number"
+                                  : item.type === "emailInput"
+                                  ? "Enter your email"
+                                  : item.type === "phoneInput"
+                                  ? "Enter your phone number"
+                                  : "Enter your date"
+                              }
+                              className={
+                                item.type === "textInput"
+                                  ? "text-input"
+                                  : item.type === "numberInput"
+                                  ? "number-input"
+                                  : item.type === "emailInput"
+                                  ? "email-input"
+                                  : item.type === "phoneInput"
+                                  ? "phone-input"
+                                  : item.type === "dateInput"
+                                  ? "date-input"
+                                  : "rating-input"
+                              }
+                              onChange={(e) =>
+                                handleInputChange(
+                                  index,
+                                  e.target.value,
+                                  item.type
+                                )
+                              }
+                              disabled={isDisabled[index]}
+                            />
+                          )}
                           <button
                             className="submit-button"
                             onClick={() => handleFormSubmit(index)}
-                            disabled={
-                              (item.type === "emailInput" && errors[index]) ||
-                              (item.type === "phoneInput" && errors[index]) ||
-                              (item.type === "dateInput" && errors[index])
-                            }
+                            disabled={!inputValues[index]}
                           >
                             <img src={send} alt="Send" />
                           </button>
-                          <br />
-                          {(item.type === "emailInput" ||
-                            item.type === "phoneInput" ||
-                            item.type === "dateInput") &&
-                            errors[index] && (
-                              <p className="display-error-message">
-                                {errors[index]}
-                              </p>
-                            )}
+                        </div>
+                      )}
+                      {errors[index] && (
+                        <div className="display-error-message">
+                          {errors[index]}
                         </div>
                       )}
                     </>
@@ -261,7 +325,7 @@ function Desktop() {
             });
           })
         ) : (
-          <p>No items available</p>
+          <p>Loading data...</p>
         )}
       </div>
     </div>

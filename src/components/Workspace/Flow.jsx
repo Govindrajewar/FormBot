@@ -31,7 +31,7 @@ function Flow({ formName }) {
     emailInput: 0,
     phoneInput: 0,
     dateInput: 0,
-    rateInput: 0,
+    ratingInput: 0,
     buttonInput: 0,
   });
 
@@ -202,7 +202,7 @@ function Flow({ formName }) {
               className="bubble"
               onClick={() =>
                 handleAddItem(
-                  "rateInput",
+                  "ratingInput",
                   ratingInput,
                   "Hint: User will tap to rate out of 5"
                 )
@@ -254,8 +254,8 @@ function Flow({ formName }) {
                 ? `Input Phone ${item.id.split("-")[1]}`
                 : item.type === "dateInput"
                 ? `Input Date ${item.id.split("-")[1]}`
-                : item.type === "rateInput"
-                ? `Input Rate ${item.id.split("-")[1]}`
+                : item.type === "ratingInput"
+                ? `Input Rating ${item.id.split("-")[1]}`
                 : item.type === "buttonInput"
                 ? `Input Button ${item.id.split("-")[1]}`
                 : "Unknown"}
@@ -357,7 +357,7 @@ function Flow({ formName }) {
                     disabled
                   />
                 </>
-              ) : item.type === "rateInput" ? (
+              ) : item.type === "ratingInput" ? (
                 <>
                   <img src={item.src} alt="Rating Input" />
                   <input

@@ -135,3 +135,45 @@
   margin-top: 5px;
   font-size: 16px;
 }
+
+.rating-container {
+  display: flex;
+  background-color: white;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.rating-option {
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: #1a5fff;
+  color: white;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rating-option:hover {
+  background-color: orange;
+}
+
+.rating-option.selected {
+  background-color: orange;
+}
+
+.rating-container.disabled .rating-option {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.rating-container.disabled .rating-option.selected {
+  background-color: orange;
+}
+
+.rating-container-dark {
+  background-color: #777777;
+}
