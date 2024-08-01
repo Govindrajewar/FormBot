@@ -75,7 +75,41 @@
   width: 40px;
 }
 
+.submit-button:hover {
+  background-color: rgb(3, 3, 195);
+}
+
 .submit-button img {
   width: 20px;
   height: 20px;
+}
+
+.sent-bubble {
+  background-color: #e0f7fa;
+  border-radius: 20px;
+  padding: 10px 20px;
+  max-width: 80%;
+  font-size: 16px;
+  color: #000;
+  margin: 0;
+}
+
+.text-input-dark {
+  background-color: #777777;
+  color: #ffffff;
+  flex-grow: 1;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 200px;
+  height: 30px;
+}
+
+.submit-button-dark {
+  background-color: #777777;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
 }
