@@ -49,6 +49,12 @@ function Desktop() {
       } else {
         setErrors({ ...errors, [index]: "Invalid phone number" });
       }
+    } else if (type === "dateInput") {
+      if (validateDate(value)) {
+        setErrors({ ...errors, [index]: null });
+      } else {
+        setErrors({ ...errors, [index]: "Invalid date" });
+      }
     } else {
       setErrors({ ...errors, [index]: null });
     }
@@ -62,7 +68,8 @@ function Desktop() {
         (item.type === "textInput" ||
           item.type === "numberInput" ||
           item.type === "emailInput" ||
-          item.type === "phoneInput")
+          item.type === "phoneInput" ||
+          item.type === "dateInput")
           ? { ...item, value: inputValues[index] || "" }
           : item
       ),
@@ -78,6 +85,11 @@ function Desktop() {
   const validatePhone = (phone) => {
     const re = /^\d{10}$/;
     return re.test(phone);
+  };
+
+  const validateDate = (date) => {
+    const re = /^\d{4}-\d{2}-\d{2}$/;
+    return re.test(date);
   };
 
   const filteredData = data
@@ -100,7 +112,8 @@ function Desktop() {
                 (item.type === "textInput" ||
                   item.type === "numberInput" ||
                   item.type === "emailInput" ||
-                  item.type === "phoneInput") &&
+                  item.type === "phoneInput" ||
+                  item.type === "dateInput") &&
                 !inputValues[index];
               if (isInputEmpty) isEmpty = true;
 
@@ -111,7 +124,8 @@ function Desktop() {
                     item.type === "textInput" ||
                     item.type === "numberInput" ||
                     item.type === "emailInput" ||
-                    item.type === "phoneInput"
+                    item.type === "phoneInput" ||
+                    item.type === "dateInput"
                       ? "right"
                       : "left"
                   }`}
@@ -133,7 +147,8 @@ function Desktop() {
                   ) : item.type !== "textInput" &&
                     item.type !== "numberInput" &&
                     item.type !== "emailInput" &&
-                    item.type !== "phoneInput" ? (
+                    item.type !== "phoneInput" &&
+                    item.type !== "dateInput" ? (
                     <>
                       <img src={icon} alt="icon" className="data-icon" />
                       <p className="chat-bubble">{item.value}</p>
@@ -150,7 +165,9 @@ function Desktop() {
                                 ? "number"
                                 : item.type === "emailInput"
                                 ? "email"
-                                : "tel"
+                                : item.type === "phoneInput"
+                                ? "tel"
+                                : "date"
                             }
                             value={item.value}
                             className={
@@ -160,7 +177,9 @@ function Desktop() {
                                 ? "number-input-dark"
                                 : item.type === "emailInput"
                                 ? "email-input-dark"
-                                : "phone-input-dark"
+                                : item.type === "phoneInput"
+                                ? "phone-input-dark"
+                                : "date-input-dark"
                             }
                             disabled
                           />
@@ -178,7 +197,9 @@ function Desktop() {
                                 ? "number"
                                 : item.type === "emailInput"
                                 ? "email"
-                                : "tel"
+                                : item.type === "phoneInput"
+                                ? "tel"
+                                : "date"
                             }
                             placeholder={
                               item.type === "textInput"
@@ -187,7 +208,9 @@ function Desktop() {
                                 ? "Enter your number"
                                 : item.type === "emailInput"
                                 ? "Enter your email"
-                                : "Enter your phone number"
+                                : item.type === "phoneInput"
+                                ? "Enter your phone number"
+                                : "Enter a date"
                             }
                             className={
                               item.type === "textInput"
@@ -196,7 +219,9 @@ function Desktop() {
                                 ? "number-input"
                                 : item.type === "emailInput"
                                 ? "email-input"
-                                : "phone-input"
+                                : item.type === "phoneInput"
+                                ? "phone-input"
+                                : "date-input"
                             }
                             value={inputValues[index] || ""}
                             onChange={(e) =>
@@ -212,14 +237,16 @@ function Desktop() {
                             onClick={() => handleFormSubmit(index)}
                             disabled={
                               (item.type === "emailInput" && errors[index]) ||
-                              (item.type === "phoneInput" && errors[index])
+                              (item.type === "phoneInput" && errors[index]) ||
+                              (item.type === "dateInput" && errors[index])
                             }
                           >
                             <img src={send} alt="Send" />
                           </button>
                           <br />
                           {(item.type === "emailInput" ||
-                            item.type === "phoneInput") &&
+                            item.type === "phoneInput" ||
+                            item.type === "dateInput") &&
                             errors[index] && (
                               <p className="display-error-message">
                                 {errors[index]}

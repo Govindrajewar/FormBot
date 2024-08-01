@@ -57,6 +57,7 @@
   margin-right: 10px;
 }
 
+.date-input,
 .phone-input,
 .email-input,
 .number-input,
@@ -98,6 +99,7 @@
   margin: 0;
 }
 
+.date-input-dark,
 .phone-input-dark,
 .email-input-dark,
 .number-input-dark,
