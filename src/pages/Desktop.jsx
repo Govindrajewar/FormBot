@@ -7,6 +7,7 @@ import send from "../assets/Desktop/send.png";
 function Desktop() {
   const [data, setData] = useState([]);
   const [inputValues, setInputValues] = useState({});
+  const [errors, setErrors] = useState({});
   const [visibleItems, setVisibleItems] = useState(0);
 
   useEffect(() => {
@@ -30,11 +31,21 @@ function Desktop() {
     }
   }, [visibleItems, data]);
 
-  const handleInputChange = (index, value) => {
+  const handleInputChange = (index, value, type) => {
     setInputValues({
       ...inputValues,
       [index]: value,
     });
+
+    if (type === "emailInput") {
+      if (validateEmail(value)) {
+        setErrors({ ...errors, [index]: null });
+      } else {
+        setErrors({ ...errors, [index]: "Invalid email address" });
+      }
+    } else {
+      setErrors({ ...errors, [index]: null });
+    }
   };
 
   const handleFormSubmit = (index) => {
@@ -42,7 +53,9 @@ function Desktop() {
       ...form,
       itemList: form.itemList.map((item, itemIndex) =>
         itemIndex === index &&
-        (item.type === "textInput" || item.type === "numberInput")
+        (item.type === "textInput" ||
+          item.type === "numberInput" ||
+          item.type === "emailInput")
           ? { ...item, value: inputValues[index] || "" }
           : item
       ),
@@ -50,8 +63,13 @@ function Desktop() {
     setData(updatedData);
   };
 
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
+
   const filteredData = data
-    .filter((form) => form.formName === "gif testing")
+    .filter((form) => form.formName === "input testing")
     .map((form) => ({
       ...form,
       itemList: form.itemList.slice(0, visibleItems),
@@ -67,7 +85,9 @@ function Desktop() {
               if (isEmpty) return null;
 
               const isInputEmpty =
-                (item.type === "textInput" || item.type === "numberInput") &&
+                (item.type === "textInput" ||
+                  item.type === "numberInput" ||
+                  item.type === "emailInput") &&
                 !inputValues[index];
               if (isInputEmpty) isEmpty = true;
 
@@ -75,7 +95,9 @@ function Desktop() {
                 <div
                   key={index}
                   className={`data-container ${
-                    item.type === "textInput" || item.type === "numberInput"
+                    item.type === "textInput" ||
+                    item.type === "numberInput" ||
+                    item.type === "emailInput"
                       ? "right"
                       : "left"
                   }`}
@@ -95,7 +117,8 @@ function Desktop() {
                       </video>
                     </>
                   ) : item.type !== "textInput" &&
-                    item.type !== "numberInput" ? (
+                    item.type !== "numberInput" &&
+                    item.type !== "emailInput" ? (
                     <>
                       <img src={icon} alt="icon" className="data-icon" />
                       <p className="chat-bubble">{item.value}</p>
@@ -106,24 +129,23 @@ function Desktop() {
                         <div className="text-input-container">
                           <input
                             type={
-                              item.type === "textInput" ? "text" : "number"
+                              item.type === "textInput"
+                                ? "text"
+                                : item.type === "numberInput"
+                                ? "number"
+                                : "email"
                             }
                             value={item.value}
                             className={
                               item.type === "textInput"
                                 ? "text-input-dark"
-                                : "number-input-dark"
+                                : item.type === "numberInput"
+                                ? "number-input-dark"
+                                : "email-input-dark"
                             }
                             disabled
                           />
-                          <button
-                            className={
-                              item.type === "textInput"
-                                ? "submit-button-dark"
-                                : "submit-button-dark"
-                            }
-                            disabled
-                          >
+                          <button className="submit-button-dark" disabled>
                             <img src={send} alt="Send" />
                           </button>
                         </div>
@@ -131,29 +153,50 @@ function Desktop() {
                         <div className="text-input-container">
                           <input
                             type={
-                              item.type === "textInput" ? "text" : "number"
+                              item.type === "textInput"
+                                ? "text"
+                                : item.type === "numberInput"
+                                ? "number"
+                                : "email"
                             }
                             placeholder={
                               item.type === "textInput"
                                 ? "Enter your text"
-                                : "Enter your number"
+                                : item.type === "numberInput"
+                                ? "Enter your number"
+                                : "Enter your email"
                             }
                             className={
                               item.type === "textInput"
                                 ? "text-input"
-                                : "number-input"
+                                : item.type === "numberInput"
+                                ? "number-input"
+                                : "email-input"
                             }
                             value={inputValues[index] || ""}
                             onChange={(e) =>
-                              handleInputChange(index, e.target.value)
+                              handleInputChange(
+                                index,
+                                e.target.value,
+                                item.type
+                              )
                             }
                           />
                           <button
                             className="submit-button"
                             onClick={() => handleFormSubmit(index)}
+                            disabled={
+                              item.type === "emailInput" && errors[index]
+                            }
                           >
                             <img src={send} alt="Send" />
                           </button>
+                          <br />
+                          {item.type === "emailInput" && errors[index] && (
+                            <p className="display-error-message">
+                              {errors[index]}
+                            </p>
+                          )}
                         </div>
                       )}
                     </>

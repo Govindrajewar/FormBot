@@ -57,6 +57,7 @@
   margin-right: 10px;
 }
 
+.email-input,
 .number-input,
 .text-input {
   flex-grow: 1;
@@ -96,6 +97,7 @@
   margin: 0;
 }
 
+.email-input-dark,
 .number-input-dark,
 .text-input-dark {
   background-color: #777777;
@@ -122,4 +124,10 @@
   height: 300px;
   width: 500px;
   border: 1px solid black;
+}
+
+.display-error-message {
+  color: red;
+  margin-top: 5px;
+  font-size: 16px;
 }
