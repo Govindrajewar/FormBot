@@ -41,7 +41,8 @@ function Desktop() {
     const updatedData = data.map((form) => ({
       ...form,
       itemList: form.itemList.map((item, itemIndex) =>
-        itemIndex === index && item.type === "textInput"
+        itemIndex === index &&
+        (item.type === "textInput" || item.type === "numberInput")
           ? { ...item, value: inputValues[index] || "" }
           : item
       ),
@@ -66,14 +67,17 @@ function Desktop() {
               if (isEmpty) return null;
 
               const isInputEmpty =
-                item.type === "textInput" && !inputValues[index];
+                (item.type === "textInput" || item.type === "numberInput") &&
+                !inputValues[index];
               if (isInputEmpty) isEmpty = true;
 
               return (
                 <div
                   key={index}
                   className={`data-container ${
-                    item.type === "textInput" ? "right" : "left"
+                    item.type === "textInput" || item.type === "numberInput"
+                      ? "right"
+                      : "left"
                   }`}
                 >
                   {item.type === "image" || item.type === "gif" ? (
@@ -90,7 +94,8 @@ function Desktop() {
                         Your browser does not support the video tag.
                       </video>
                     </>
-                  ) : item.type !== "textInput" ? (
+                  ) : item.type !== "textInput" &&
+                    item.type !== "numberInput" ? (
                     <>
                       <img src={icon} alt="icon" className="data-icon" />
                       <p className="chat-bubble">{item.value}</p>
@@ -100,21 +105,44 @@ function Desktop() {
                       {item.value ? (
                         <div className="text-input-container">
                           <input
-                            type="text"
+                            type={
+                              item.type === "textInput" ? "text" : "number"
+                            }
                             value={item.value}
-                            className="text-input-dark"
+                            className={
+                              item.type === "textInput"
+                                ? "text-input-dark"
+                                : "number-input-dark"
+                            }
                             disabled
                           />
-                          <button className="submit-button-dark" disabled>
+                          <button
+                            className={
+                              item.type === "textInput"
+                                ? "submit-button-dark"
+                                : "submit-button-dark"
+                            }
+                            disabled
+                          >
                             <img src={send} alt="Send" />
                           </button>
                         </div>
                       ) : (
                         <div className="text-input-container">
                           <input
-                            type="text"
-                            placeholder="Enter your text"
-                            className="text-input"
+                            type={
+                              item.type === "textInput" ? "text" : "number"
+                            }
+                            placeholder={
+                              item.type === "textInput"
+                                ? "Enter your text"
+                                : "Enter your number"
+                            }
+                            className={
+                              item.type === "textInput"
+                                ? "text-input"
+                                : "number-input"
+                            }
                             value={inputValues[index] || ""}
                             onChange={(e) =>
                               handleInputChange(index, e.target.value)
