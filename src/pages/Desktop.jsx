@@ -50,7 +50,7 @@ function Desktop() {
   };
 
   const filteredData = data
-    .filter((form) => form.formName === "Introduction")
+    .filter((form) => form.formName === "Image Alignment 2")
     .map((form) => ({
       ...form,
       itemList: form.itemList.slice(0, visibleItems),
@@ -76,7 +76,15 @@ function Desktop() {
                     item.type === "textInput" ? "right" : "left"
                   }`}
                 >
-                  {item.type !== "textInput" ? (
+                  {item.type === "image" ? (
+                    <>
+                      <img
+                        src={item.value}
+                        alt="Invalid URL"
+                        className="data-image"
+                      />
+                    </>
+                  ) : item.type !== "textInput" ? (
                     <>
                       <img src={icon} alt="icon" className="data-icon" />
                       <p className="chat-bubble">{item.value}</p>
