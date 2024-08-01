@@ -7,10 +7,9 @@ import send from "../assets/Desktop/send.png";
 function Desktop() {
   const [data, setData] = useState([]);
   const [inputValues, setInputValues] = useState({});
+  const [visibleItems, setVisibleItems] = useState(0);
 
   useEffect(() => {
-    // TODO: Move this function to "api/fetchedData"
-    // Fetching data from the backend API
     axios
       .get("http://localhost:4001/formdata")
       .then((response) => {
@@ -20,6 +19,16 @@ function Desktop() {
         console.error("There was an error fetching the data!", error);
       });
   }, []);
+
+  useEffect(() => {
+    if (visibleItems < data.length) {
+      const timer = setTimeout(() => {
+        setVisibleItems(visibleItems + 1);
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [visibleItems, data]);
 
   const handleInputChange = (index, value) => {
     setInputValues({
@@ -40,14 +49,27 @@ function Desktop() {
     setData(updatedData);
   };
 
-  const filteredData = data.filter((form) => form.formName === "Introduction");
+  const filteredData = data
+    .filter((form) => form.formName === "Introduction")
+    .map((form) => ({
+      ...form,
+      itemList: form.itemList.slice(0, visibleItems),
+    }));
 
   return (
     <div className="desktop">
       <div className="chat-container">
         {filteredData.length > 0 ? (
-          filteredData.map((form) =>
-            form.itemList.map((item, index) => (
+          filteredData.map((form) =>{
+            let isEmpty = false;
+            return form.itemList.map((item, index) => {
+              if (isEmpty) return null;
+
+              const isInputEmpty =
+                item.type === "textInput" && !inputValues[index];
+              if (isInputEmpty) isEmpty = true;
+
+              return (
               <div
                 key={index}
                 className={`data-container ${
@@ -75,7 +97,6 @@ function Desktop() {
                       </div>
                     ) : (
                       <div className="text-input-container">
-                        <span className="text-input-label">{item.value}</span>
                         <input
                           type="text"
                           placeholder="Enter your text"
@@ -96,10 +117,11 @@ function Desktop() {
                   </>
                 )}
               </div>
-            ))
-          )
+              );
+            });
+          })
         ) : (
-          <p>No items available for "Introduction"</p>
+          <p>No items available</p>
         )}
       </div>
     </div>
