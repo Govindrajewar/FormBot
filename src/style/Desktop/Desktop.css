@@ -57,6 +57,7 @@
   margin-right: 10px;
 }
 
+.phone-input,
 .email-input,
 .number-input,
 .text-input {
@@ -97,6 +98,7 @@
   margin: 0;
 }
 
+.phone-input-dark,
 .email-input-dark,
 .number-input-dark,
 .text-input-dark {

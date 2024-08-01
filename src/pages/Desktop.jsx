@@ -43,6 +43,12 @@ function Desktop() {
       } else {
         setErrors({ ...errors, [index]: "Invalid email address" });
       }
+    } else if (type === "phoneInput") {
+      if (validatePhone(value)) {
+        setErrors({ ...errors, [index]: null });
+      } else {
+        setErrors({ ...errors, [index]: "Invalid phone number" });
+      }
     } else {
       setErrors({ ...errors, [index]: null });
     }
@@ -55,7 +61,8 @@ function Desktop() {
         itemIndex === index &&
         (item.type === "textInput" ||
           item.type === "numberInput" ||
-          item.type === "emailInput")
+          item.type === "emailInput" ||
+          item.type === "phoneInput")
           ? { ...item, value: inputValues[index] || "" }
           : item
       ),
@@ -66,6 +73,11 @@ function Desktop() {
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
+  };
+
+  const validatePhone = (phone) => {
+    const re = /^\d{10}$/;
+    return re.test(phone);
   };
 
   const filteredData = data
@@ -87,7 +99,8 @@ function Desktop() {
               const isInputEmpty =
                 (item.type === "textInput" ||
                   item.type === "numberInput" ||
-                  item.type === "emailInput") &&
+                  item.type === "emailInput" ||
+                  item.type === "phoneInput") &&
                 !inputValues[index];
               if (isInputEmpty) isEmpty = true;
 
@@ -97,7 +110,8 @@ function Desktop() {
                   className={`data-container ${
                     item.type === "textInput" ||
                     item.type === "numberInput" ||
-                    item.type === "emailInput"
+                    item.type === "emailInput" ||
+                    item.type === "phoneInput"
                       ? "right"
                       : "left"
                   }`}
@@ -118,7 +132,8 @@ function Desktop() {
                     </>
                   ) : item.type !== "textInput" &&
                     item.type !== "numberInput" &&
-                    item.type !== "emailInput" ? (
+                    item.type !== "emailInput" &&
+                    item.type !== "phoneInput" ? (
                     <>
                       <img src={icon} alt="icon" className="data-icon" />
                       <p className="chat-bubble">{item.value}</p>
@@ -133,7 +148,9 @@ function Desktop() {
                                 ? "text"
                                 : item.type === "numberInput"
                                 ? "number"
-                                : "email"
+                                : item.type === "emailInput"
+                                ? "email"
+                                : "tel"
                             }
                             value={item.value}
                             className={
@@ -141,7 +158,9 @@ function Desktop() {
                                 ? "text-input-dark"
                                 : item.type === "numberInput"
                                 ? "number-input-dark"
-                                : "email-input-dark"
+                                : item.type === "emailInput"
+                                ? "email-input-dark"
+                                : "phone-input-dark"
                             }
                             disabled
                           />
@@ -157,21 +176,27 @@ function Desktop() {
                                 ? "text"
                                 : item.type === "numberInput"
                                 ? "number"
-                                : "email"
+                                : item.type === "emailInput"
+                                ? "email"
+                                : "tel"
                             }
                             placeholder={
                               item.type === "textInput"
                                 ? "Enter your text"
                                 : item.type === "numberInput"
                                 ? "Enter your number"
-                                : "Enter your email"
+                                : item.type === "emailInput"
+                                ? "Enter your email"
+                                : "Enter your phone number"
                             }
                             className={
                               item.type === "textInput"
                                 ? "text-input"
                                 : item.type === "numberInput"
                                 ? "number-input"
-                                : "email-input"
+                                : item.type === "emailInput"
+                                ? "email-input"
+                                : "phone-input"
                             }
                             value={inputValues[index] || ""}
                             onChange={(e) =>
@@ -186,17 +211,20 @@ function Desktop() {
                             className="submit-button"
                             onClick={() => handleFormSubmit(index)}
                             disabled={
-                              item.type === "emailInput" && errors[index]
+                              (item.type === "emailInput" && errors[index]) ||
+                              (item.type === "phoneInput" && errors[index])
                             }
                           >
                             <img src={send} alt="Send" />
                           </button>
                           <br />
-                          {item.type === "emailInput" && errors[index] && (
-                            <p className="display-error-message">
-                              {errors[index]}
-                            </p>
-                          )}
+                          {(item.type === "emailInput" ||
+                            item.type === "phoneInput") &&
+                            errors[index] && (
+                              <p className="display-error-message">
+                                {errors[index]}
+                              </p>
+                            )}
                         </div>
                       )}
                     </>
