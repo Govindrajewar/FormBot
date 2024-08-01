@@ -50,7 +50,7 @@ function Desktop() {
   };
 
   const filteredData = data
-    .filter((form) => form.formName === "Image Alignment 2")
+    .filter((form) => form.formName === "gif testing")
     .map((form) => ({
       ...form,
       itemList: form.itemList.slice(0, visibleItems),
@@ -76,7 +76,7 @@ function Desktop() {
                     item.type === "textInput" ? "right" : "left"
                   }`}
                 >
-                  {item.type === "image" ? (
+                  {item.type === "image" || item.type === "gif" ? (
                     <>
                       <img
                         src={item.value}
