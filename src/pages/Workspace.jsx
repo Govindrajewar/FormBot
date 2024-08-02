@@ -32,6 +32,16 @@ function Workspace() {
   });
 
   const handleSave = () => {
+    if (!formName) {
+      alert("Enter Form Name");
+      return;
+    }
+
+    if (dynamicItems.length === 0) {
+      alert("You must select items");
+      return;
+    }
+
     const dataToSave = {
       formName,
       user,
@@ -64,6 +74,7 @@ function Workspace() {
       />
       {activeComponent === "Flow" && (
         <Flow
+          formName={formName}
           dynamicItems={dynamicItems}
           setDynamicItems={setDynamicItems}
           itemCounts={itemCounts}
