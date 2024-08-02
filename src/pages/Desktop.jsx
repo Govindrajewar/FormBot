@@ -77,7 +77,8 @@ function Desktop() {
           item.type === "emailInput" ||
           item.type === "phoneInput" ||
           item.type === "dateInput" ||
-          item.type === "ratingInput")
+          item.type === "ratingInput" ||
+          item.type === "buttonInput")
           ? { ...item, value: inputValues[index] || "" }
           : item
       ),
@@ -127,7 +128,8 @@ function Desktop() {
                   item.type === "emailInput" ||
                   item.type === "phoneInput" ||
                   item.type === "dateInput" ||
-                  item.type === "ratingInput") &&
+                  item.type === "ratingInput" ||
+                  item.type === "buttonInput") &&
                 !inputValues[index];
               if (isInputEmpty) isEmpty = true;
 
@@ -140,7 +142,8 @@ function Desktop() {
                     item.type === "emailInput" ||
                     item.type === "phoneInput" ||
                     item.type === "dateInput" ||
-                    item.type === "ratingInput"
+                    item.type === "ratingInput" ||
+                    item.type === "buttonInput"
                       ? "right"
                       : "left"
                   }`}
@@ -164,7 +167,8 @@ function Desktop() {
                     item.type !== "emailInput" &&
                     item.type !== "phoneInput" &&
                     item.type !== "dateInput" &&
-                    item.type !== "ratingInput" ? (
+                    item.type !== "ratingInput" &&
+                    item.type !== "buttonInput" ? (
                     <>
                       <img src={icon} alt="icon" className="data-icon" />
                       <p className="chat-bubble">{item.value}</p>
@@ -209,7 +213,9 @@ function Desktop() {
                                   ? "email"
                                   : item.type === "phoneInput"
                                   ? "tel"
-                                  : "date"
+                                  : item.type === "dateInput"
+                                  ? "date"
+                                  : "button"
                               }
                               value={item.value}
                               className={
@@ -223,7 +229,7 @@ function Desktop() {
                                   ? "phone-input-dark"
                                   : item.type === "dateInput"
                                   ? "date-input-dark"
-                                  : "rating-input-dark"
+                                  : "button-input-dark"
                               }
                               disabled
                             />
@@ -257,6 +263,22 @@ function Desktop() {
                                 </div>
                               ))}
                             </div>
+                          ) : item.type === "buttonInput" ? (
+                            <>
+                              <input
+                                type="text"
+                                placeholder="Enter button text"
+                                className="button-input"
+                                onChange={(e) =>
+                                  handleInputChange(
+                                    index,
+                                    e.target.value,
+                                    item.type
+                                  )
+                                }
+                                disabled={isDisabled[index]}
+                              />
+                            </>
                           ) : (
                             <input
                               type={
