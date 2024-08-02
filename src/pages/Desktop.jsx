@@ -7,34 +7,30 @@ import { useLocation } from "react-router-dom";
 
 function Desktop() {
   const location = useLocation();
-  const formName = location.state?.formName || "Default Form Name"; // Set a default form name if none is provided
+  const formName = location.state?.formName;
 
   const [data, setData] = useState([]);
   const [inputValues, setInputValues] = useState({});
   const [errors, setErrors] = useState({});
-  const [visibleItems, setVisibleItems] = useState(0);
   const [isDisabled, setIsDisabled] = useState({});
 
   useEffect(() => {
     axios
       .get("http://localhost:4001/formdata")
       .then((response) => {
+        const initialValues = response.data.reduce((acc, form) => {
+          form.itemList.forEach((item, index) => {
+            acc[index] = "";
+          });
+          return acc;
+        }, {});
+        setInputValues(initialValues);
         setData(response.data);
       })
       .catch((error) => {
         console.error("There was an error fetching the data!", error);
       });
   }, []);
-
-  useEffect(() => {
-    if (visibleItems < data.length) {
-      const timer = setTimeout(() => {
-        setVisibleItems(visibleItems + 1);
-      }, 2000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [visibleItems, data]);
 
   const handleInputChange = (index, value, type) => {
     setInputValues({
@@ -110,12 +106,7 @@ function Desktop() {
     return rating >= 1 && rating <= 5;
   };
 
-  const filteredData = data
-    .filter((form) => form.formName === formName)
-    .map((form) => ({
-      ...form,
-      itemList: form.itemList.slice(0, visibleItems),
-    }));
+  const filteredData = data.filter((form) => form.formName === formName);
 
   return (
     <div className="desktop">
@@ -221,7 +212,7 @@ function Desktop() {
                                   ? "date"
                                   : "button"
                               }
-                              value={item.value}
+                              value={item.value || ""}
                               className={
                                 item.type === "textInput"
                                   ? "text-input-dark"
@@ -296,6 +287,7 @@ function Desktop() {
                                   ? "tel"
                                   : "date"
                               }
+                              value={inputValues[index] || ""}
                               placeholder={
                                 item.type === "textInput"
                                   ? "Enter your text"

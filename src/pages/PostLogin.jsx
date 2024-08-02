@@ -4,18 +4,11 @@ import addFolder from "../assets/PostLogin/addFolder.png";
 import drop from "../assets/PostLogin/drop.png";
 import deleteIcon from "../assets/PostLogin/delete.png";
 import upArrow from "../assets/PostLogin/upArrow.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function PostLogin() {
-  const [userName, setUsername] = useState("");
-
-  useEffect(() => {
-    const storedUsername = localStorage.getItem("userName");
-    if (storedUsername) {
-      setUsername(storedUsername);
-    }
-  }, []);
-
+  const location = useLocation();
+  const [userName, setUsername] = useState(location.state?.userName || "");
   const [isListVisible, setIsListVisible] = useState(false);
   const [isCreateFolder, setIsCreateFolder] = useState(false);
   const [newFolderName, setNewFolderName] = useState("");
@@ -72,7 +65,7 @@ function PostLogin() {
   };
 
   const createTypeBot = () => {
-    navigate("/Workspace");
+    navigate("/Workspace", { state: { userName } });
   };
 
   return (

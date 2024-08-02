@@ -1,12 +1,11 @@
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Login } from "../api/User.js";
 import "../style/Login/Login.css";
 import arrowBack from "../assets/Login/arrowBack.png";
 import bottomEllipse from "../assets/Login/bottomEllipse.png";
 import sideEllipse from "../assets/Login/sideEllipse.png";
 import polygon from "../assets/Login/polygon.png";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-// connect to server to validate User
-import { Login } from "../api/User.js";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -48,9 +47,9 @@ function LoginPage() {
     try {
       const response = await Login(email, password);
       if (response.status === 201) {
-        localStorage.setItem("userName", response.data.user.userName);
+        const userName = response.data.user.userName;
         alert("Login successful");
-        navigate("/postlogin");
+        navigate("/postlogin", { state: { userName } });
       }
     } catch (error) {
       setLoginError(error.message);

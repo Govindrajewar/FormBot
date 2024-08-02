@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import "../style/Workspace/Workspace.css";
 import WorkspaceNavBar from "../components/Workspace/WorkspaceNavBar.jsx";
 import Flow from "../components/Workspace/Flow.jsx";
@@ -7,6 +8,12 @@ import Response from "../components/Workspace/Response.jsx";
 import axios from "axios";
 
 function Workspace() {
+  const location = useLocation();
+  const [user, setUser] = useState({
+    username: location.state?.userName,
+    // TODO: fetch email id of user
+    email: "john@example.com",
+  });
   const [activeComponent, setActiveComponent] = useState("Flow");
   const [formName, setFormName] = useState("");
   const [dynamicItems, setDynamicItems] = useState([]);
@@ -22,13 +29,6 @@ function Workspace() {
     dateInput: 0,
     ratingInput: 0,
     buttonInput: 0,
-  });
-
-  // eslint-disable-next-line
-  const [user, setUser] = useState({
-    userId: "12345",
-    username: "john_doe",
-    email: "john@example.com",
   });
 
   const handleSave = () => {
@@ -48,10 +48,8 @@ function Workspace() {
       itemList: dynamicItems,
     };
 
-    // TODO: Delete this
     console.log(dataToSave);
 
-    // TODO: Move following code to /api/DynamicItems
     axios
       .post("http://localhost:4001/dynamic-items", dataToSave)
       .then((response) => {
