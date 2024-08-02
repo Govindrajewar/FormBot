@@ -3,8 +3,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import icon from "../../src/assets/Workspace/Theme/icon.png";
 import send from "../assets/Desktop/send.png";
+import { useLocation } from "react-router-dom";
 
 function Desktop() {
+  const location = useLocation();
+  const formName = location.state?.formName || "Default Form Name"; // Set a default form name if none is provided
+
   const [data, setData] = useState([]);
   const [inputValues, setInputValues] = useState({});
   const [errors, setErrors] = useState({});
@@ -107,7 +111,7 @@ function Desktop() {
   };
 
   const filteredData = data
-    .filter((form) => form.formName === "Rating Input")
+    .filter((form) => form.formName === formName)
     .map((form) => ({
       ...form,
       itemList: form.itemList.slice(0, visibleItems),

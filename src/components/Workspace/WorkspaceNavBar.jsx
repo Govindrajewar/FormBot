@@ -18,7 +18,11 @@ function WorkspaceNavBar({
   };
 
   const handleShareForm = () => {
-    navigate("/desktop");
+    if (!formName) {
+      alert("Enter Form Name");
+      return;
+    }
+    navigate("/desktop", { state: { formName } });
   };
 
   const handleClose = () => {
