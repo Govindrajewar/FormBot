@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-import axios from "axios";
 import "../../style/Workspace/Flow.css";
 import start from "../../assets/Workspace/Flow/start.png";
 import deleteLogo from "../../assets/Workspace/Flow/delete.png";
@@ -19,29 +17,12 @@ import dateInput from "../../assets/Workspace/Flow/Inputs/date.png";
 import ratingInput from "../../assets/Workspace/Flow/Inputs/rating.png";
 import buttonInput from "../../assets/Workspace/Flow/Inputs/button.png";
 
-function Flow({ formName }) {
-  const [dynamicItems, setDynamicItems] = useState([]);
-  const [itemCounts, setItemCounts] = useState({
-    text: 0,
-    image: 0,
-    video: 0,
-    gif: 0,
-    textInput: 0,
-    numberInput: 0,
-    emailInput: 0,
-    phoneInput: 0,
-    dateInput: 0,
-    ratingInput: 0,
-    buttonInput: 0,
-  });
-
-  // eslint-disable-next-line
-  const [user, setUser] = useState({
-    userId: "12345",
-    username: "john_doe",
-    email: "john@example.com",
-  });
-
+function Flow({
+  dynamicItems,
+  setDynamicItems,
+  itemCounts,
+  setItemCounts,
+}) {
   const handleAddItem = (type, src, placeholder) => {
     const newId = itemCounts[type] + 1;
     const newItem = {
@@ -70,27 +51,6 @@ function Flow({ formName }) {
         item.id === id ? { ...item, value: newValue } : item
       )
     );
-  };
-
-  const handleSave = () => {
-    const dataToSave = {
-      formName,
-      user,
-      itemList: dynamicItems,
-    };
-
-    // TODO: Delete this
-    console.log(dataToSave);
-
-    // TODO: Move following code to /api/DynamicItems
-    axios
-      .post("http://localhost:4001/dynamic-items", dataToSave)
-      .then((response) => {
-        console.log("Items saved:", response.data);
-      })
-      .catch((error) => {
-        console.error("There was an error saving the items!", error);
-      });
   };
 
   return (
@@ -386,10 +346,6 @@ function Flow({ formName }) {
           </div>
         ))}
       </div>
-
-      <button onClick={handleSave} className="save-button">
-        Save
-      </button>
     </div>
   );
 }

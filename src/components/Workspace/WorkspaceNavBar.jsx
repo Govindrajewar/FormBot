@@ -3,7 +3,12 @@ import "../../style/Workspace/WorkspaceNavBar.css";
 import close from "../../assets/Workspace/close.png";
 import { useNavigate } from "react-router-dom";
 
-function WorkspaceNavBar({ setActiveComponent, formName, setFormName }) {
+function WorkspaceNavBar({
+  setActiveComponent,
+  formName,
+  setFormName,
+  handleSave,
+}) {
   const navigate = useNavigate();
   const [selectedItem, setSelectedItem] = useState("Flow");
 
@@ -57,7 +62,9 @@ function WorkspaceNavBar({ setActiveComponent, formName, setFormName }) {
         <button className="share-btn" onClick={handleShareForm}>
           Share
         </button>
-        <button className="save-btn">Save</button>
+        <button className="save-btn" onClick={handleSave}>
+          Save
+        </button>
         <img src={close} alt="close" onClick={handleClose} />
       </div>
     </div>
