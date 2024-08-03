@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // TODO: Add Server Deployment Link
-const BACKEND_ORIGIN_URL = "http://localhost:4001";
+const BACKEND_ORIGIN_URL = "https://formbot-server-production.up.railway.app";
 
 const Login = async (email, password) => {
   try {

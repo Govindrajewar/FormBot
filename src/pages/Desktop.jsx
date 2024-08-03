@@ -16,7 +16,7 @@ function Desktop() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4001/formdata")
+      .get("https://formbot-server-production.up.railway.app/formdata")
       .then((response) => {
         const initialValues = response.data.reduce((acc, form) => {
           form.itemList.forEach((item, index) => {

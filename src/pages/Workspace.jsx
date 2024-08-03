@@ -48,7 +48,7 @@ function Workspace() {
     console.log(dataToSave);
 
     axios
-      .post("http://localhost:4001/dynamic-items", dataToSave)
+      .post("https://formbot-server-production.up.railway.app/dynamic-items", dataToSave)
       .then((response) => {
         console.log("Items saved:", response.data);
       })

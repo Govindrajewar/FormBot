@@ -23,7 +23,7 @@ function PostLogin() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4001/formdata")
+      .get("https://formbot-server-production.up.railway.app/formdata")
       .then((response) => {
         const userForms = response.data
           .filter((item) => item.user === userName)
@@ -92,7 +92,7 @@ function PostLogin() {
 
   const handleDeleteForm = (formName) => {
     axios
-      .delete(`http://localhost:4001/formdata/${formName}`)
+      .delete(`https://formbot-server-production.up.railway.app/formdata/${formName}`)
       .then(() => {
         setFormNames(formNames.filter((name) => name !== formName));
       })
