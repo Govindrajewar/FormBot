@@ -152,7 +152,7 @@
   font-weight: 400;
   width: 150px;
   height: 200px;
-  margin: 20px 20px 0 0;
+  margin: 10px 10px 10px 0;
 }
 
 .typebot-button .plus-sign {
@@ -245,4 +245,21 @@
 .center-line {
   font-size: 40px;
   color: #47474a;
+}
+
+.form-list {
+  display: flex;
+}
+
+.form-list-item {
+  background-color: #ffffff80;
+  padding: 20px;
+  margin: 10px;
+  width: 150px;
+  height: 200px;
+  border-radius: 6px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

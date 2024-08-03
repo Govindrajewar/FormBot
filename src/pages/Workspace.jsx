@@ -10,11 +10,7 @@ import axios from "axios";
 function Workspace() {
   const location = useLocation();
   // eslint-disable-next-line
-  const [user, setUser] = useState({
-    username: location.state?.userName,
-    // TODO: fetch email id of user
-    email: "john@example.com",
-  });
+  const [user, setUser] = useState(location.state?.userName);
   const [activeComponent, setActiveComponent] = useState("Flow");
   const [formName, setFormName] = useState("");
   const [dynamicItems, setDynamicItems] = useState([]);

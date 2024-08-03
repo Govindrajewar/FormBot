@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import "../style/PostLogin/PostLogin.css";
 import addFolder from "../assets/PostLogin/addFolder.png";
 import drop from "../assets/PostLogin/drop.png";
@@ -16,8 +17,24 @@ function PostLogin() {
   const [folders, setFolders] = useState([]);
   const [isDeleteFolder, setIsDeleteFolder] = useState(false);
   const [deleteIndexFolder, setDeleteIndexFolder] = useState(0);
+  const [formNames, setFormNames] = useState([]);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:4001/formdata")
+      .then((response) => {
+        const userForms = response.data
+          .filter((item) => item.user === userName)
+          .map((item) => item.formName);
+        setFormNames(userForms);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the data!", error);
+      });
+    // eslint-disable-next-line
+  }, []);
 
   const handleSettings = () => {
     navigate("/settings");
@@ -132,6 +149,15 @@ function PostLogin() {
             <br />
             <br />
             Create a typebot
+          </div>
+          <div className="form-names">
+            <div className="form-list">
+              {formNames.map((formName, index) => (
+                <div className="form-list-item" key={index}>
+                  {formName}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
