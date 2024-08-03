@@ -36,6 +36,10 @@ function PostLogin() {
     // eslint-disable-next-line
   }, []);
 
+  const goToForm = (formName) => {
+    navigate("/desktop", { state: { formName } });
+  };
+
   const handleSettings = () => {
     navigate("/settings");
   };
@@ -153,7 +157,12 @@ function PostLogin() {
           <div className="form-names">
             <div className="form-list">
               {formNames.map((formName, index) => (
-                <div className="form-list-item" key={index}>
+                <div
+                  className="form-list-item"
+                  key={index}
+                  onClick={() => goToForm(formName)}
+                  value={formName}
+                >
                   {formName}
                 </div>
               ))}

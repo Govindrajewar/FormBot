@@ -258,6 +258,7 @@
   width: 150px;
   height: 200px;
   border-radius: 6px;
+  cursor: pointer;
 
   display: flex;
   justify-content: center;
