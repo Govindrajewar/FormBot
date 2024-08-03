@@ -264,3 +264,14 @@
   justify-content: center;
   align-items: center;
 }
+
+.delete-form-icon {
+  position: relative;
+  top: -120px;
+  right: -50px;
+}
+
+.delete-form-icon img {
+  height: 25px;
+  width: 25px;
+}

@@ -90,6 +90,19 @@ function PostLogin() {
     navigate("/Workspace", { state: { userName } });
   };
 
+  const handleDeleteForm = (formName) => {
+    axios
+      .delete(`http://localhost:4001/formdata/${formName}`)
+      .then(() => {
+        setFormNames(formNames.filter((name) => name !== formName));
+      })
+      .catch((error) => {
+        console.error("There was an error deleting the form!", error);
+      });
+
+    alert("Form deleted successful");
+  };
+
   return (
     <div className="PostLogin" onClick={hideList}>
       <header className="workspace-header">
@@ -157,13 +170,14 @@ function PostLogin() {
           <div className="form-names">
             <div className="form-list">
               {formNames.map((formName, index) => (
-                <div
-                  className="form-list-item"
-                  key={index}
-                  onClick={() => goToForm(formName)}
-                  value={formName}
-                >
-                  {formName}
+                <div className="form-list-item" key={index}>
+                  <span onClick={() => goToForm(formName)}>{formName}</span>
+                  <span
+                    className="delete-form-icon"
+                    onClick={() => handleDeleteForm(formName)}
+                  >
+                    <img src={deleteIcon} alt="delete Icon" />
+                  </span>
                 </div>
               ))}
             </div>
