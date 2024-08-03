@@ -7,7 +7,7 @@ import bottomEllipse from "../assets/Login/bottomEllipse.png";
 import sideEllipse from "../assets/Login/sideEllipse.png";
 import polygon from "../assets/Login/polygon.png";
 
-function LoginPage() {
+function LoginPage({ setIsAuthenticated }) {
   const navigate = useNavigate();
   const handleArrowBack = () => {
     navigate("/");
@@ -49,6 +49,7 @@ function LoginPage() {
       if (response.status === 201) {
         const userName = response.data.user.userName;
         alert("Login successful");
+        setIsAuthenticated(true);
         navigate("/postlogin", { state: { userName } });
       }
     } catch (error) {
