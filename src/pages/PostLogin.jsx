@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "../style/PostLogin/PostLogin.css";
 import addFolder from "../assets/PostLogin/addFolder.png";
 import drop from "../assets/PostLogin/drop.png";
@@ -8,6 +8,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 function PostLogin() {
   const location = useLocation();
+  // eslint-disable-next-line
   const [userName, setUsername] = useState(location.state?.userName || "");
   const [isListVisible, setIsListVisible] = useState(false);
   const [isCreateFolder, setIsCreateFolder] = useState(false);

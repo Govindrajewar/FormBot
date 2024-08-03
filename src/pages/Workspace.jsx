@@ -9,6 +9,7 @@ import axios from "axios";
 
 function Workspace() {
   const location = useLocation();
+  // eslint-disable-next-line
   const [user, setUser] = useState({
     username: location.state?.userName,
     // TODO: fetch email id of user
