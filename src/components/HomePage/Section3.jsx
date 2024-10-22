@@ -1,4 +1,4 @@
-import "../../style/Section3.css";
+import "../../style/HomePage/Section3.css";
 import doneImg from "../../assets/HomePage/Section3/done.png";
 import closeImg from "../../assets/HomePage/Section3/close.png";
 import typeBotImg from "../../assets/HomePage/Section3/typebotStandard.png";

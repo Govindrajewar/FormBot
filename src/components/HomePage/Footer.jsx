@@ -1,4 +1,4 @@
-import "../../style/Footer.css";
+import "../../style/HomePage/Footer.css";
 import linkImg from "../../assets/HomePage/Footer/link.png";
 
 function Footer() {
