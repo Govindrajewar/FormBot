@@ -54,16 +54,21 @@ function Section3() {
             What services are you interested in? <span>*</span>
           </label>
           <br />
-          <input type="checkbox" value="Website Dev" />
+          <input type="checkbox" value="Website Dev" disabled />
           Website Dev
           <br />
-          <input type="checkbox" value="Content Marketing" />
+          <input type="checkbox" value="Content Marketing" disabled />
           Content Marketing
           <br />
-          <input type="checkbox" value="Social Media" />
+          <input type="checkbox" value="Social Media" disabled />
           Social Media
           <br />
-          <input type="checkbox" id="checkboxId" value="UX/UI Design" />
+          <input
+            type="checkbox"
+            id="checkboxId"
+            value="UX/UI Design"
+            disabled
+          />
           UX/UI Design
           <br />
           <label htmlFor="addInfo">
