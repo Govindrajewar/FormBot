@@ -6,7 +6,7 @@
   align-items: center;
   height: 50px;
   border-bottom: 1px solid gray;
-  width: 97.25%;
+  /* width: 97.25%; */
 }
 
 .header-container #formNameId {
