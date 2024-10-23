@@ -6,6 +6,7 @@ import drop from "../assets/PostLogin/drop.png";
 import deleteIcon from "../assets/PostLogin/delete.png";
 import upArrow from "../assets/PostLogin/upArrow.png";
 import { useNavigate } from "react-router-dom";
+import { BACKEND_URL } from "../deploymentLink";
 
 function PostLogin() {
   // eslint-disable-next-line
@@ -34,7 +35,7 @@ function PostLogin() {
 
   useEffect(() => {
     axios
-      .get("https://formbot-server-production.up.railway.app/formdata")
+      .get(`${BACKEND_URL}/formdata`)
       .then((response) => {
         const userForms = response.data
           .filter((item) => item.user === userName)
@@ -105,7 +106,7 @@ function PostLogin() {
 
   const handleDeleteForm = (formName) => {
     axios
-      .delete(`https://formbot-server-production.up.railway.app/formdata/${formName}`)
+      .delete(`${BACKEND_URL}/formdata/${formName}`)
       .then(() => {
         setFormNames(formNames.filter((name) => name !== formName));
       })
@@ -118,128 +119,124 @@ function PostLogin() {
 
   return (
     <div className="PostLogin" onClick={hideList}>
-      {isLoggedInFormBot && (
-        <>
-          <header className="workspace-header">
-            {isListVisible ? (
-              <>
-                <div
-                  className="header-h1"
-                  onClick={() => setIsListVisible(!isListVisible)}
-                >
-                  {userName ? `${userName}'s workspace` : "Your workspace"}
-                  <img src={upArrow} alt="Up arrow" />
-                </div>
-                <div className="header-settings" onClick={handleSettings}>
-                  Settings
-                </div>
-                <div className="header-logOut" onClick={handleLogout}>
-                  Log Out
-                </div>
-              </>
-            ) : (
-              <>
-                <div
-                  className="header-h1"
-                  onClick={() => setIsListVisible(!isListVisible)}
-                >
-                  {userName ? `${userName}'s workspace` : "Your workspace"}
-                  <img src={drop} alt="drop arrow" />
-                </div>
-              </>
-            )}
-          </header>
-          <div className="workspace-content">
-            <div className="workspace-folder-content">
-              <div
-                className="folder-button"
-                onClick={() => setIsCreateFolder(!isCreateFolder)}
-              >
-                <img src={addFolder} alt="Add Folder" />
-                Create a folder
-              </div>
-              <div className="tabs">
-                {folders.map((folder, index) => (
-                  <div className="tab" key={index}>
-                    {folder}
-                    <span
-                      className="delete-icon"
-                      onClick={() => deleteFolder(index)}
-                    >
-                      <img src={deleteIcon} alt="delete Icon" />
-                    </span>
-                  </div>
-                ))}
-              </div>
+      <header className="workspace-header">
+        {isListVisible ? (
+          <>
+            <div
+              className="header-h1"
+              onClick={() => setIsListVisible(!isListVisible)}
+            >
+              {userName ? `${userName}'s workspace` : "Your workspace"}
+              <img src={upArrow} alt="Up arrow" />
             </div>
-            <div className="create-typebot">
-              <div className="typebot-button" onClick={createTypeBot}>
-                <br />
-                <br />
-                <span className="plus-sign">+</span>
-                <br />
-                <br />
-                <br />
-                Create a typebot
+            <div className="header-settings" onClick={handleSettings}>
+              Settings
+            </div>
+            <div className="header-logOut" onClick={handleLogout}>
+              Log Out
+            </div>
+          </>
+        ) : (
+          <>
+            <div
+              className="header-h1"
+              onClick={() => setIsListVisible(!isListVisible)}
+            >
+              {userName ? `${userName}'s workspace` : "Your workspace"}
+              <img src={drop} alt="drop arrow" />
+            </div>
+          </>
+        )}
+      </header>
+      <div className="workspace-content">
+        <div className="workspace-folder-content">
+          <div
+            className="folder-button"
+            onClick={() => setIsCreateFolder(!isCreateFolder)}
+          >
+            <img src={addFolder} alt="Add Folder" />
+            Create a folder
+          </div>
+          <div className="tabs">
+            {folders.map((folder, index) => (
+              <div className="tab" key={index}>
+                {folder}
+                <span
+                  className="delete-icon"
+                  onClick={() => deleteFolder(index)}
+                >
+                  <img src={deleteIcon} alt="delete Icon" />
+                </span>
               </div>
-              <div className="form-names">
-                <div className="form-list">
-                  {formNames.map((formName, index) => (
-                    <div className="form-list-item" key={index}>
-                      <span onClick={() => goToForm(formName)}>{formName}</span>
-                      <span
-                        className="delete-form-icon"
-                        onClick={() => handleDeleteForm(formName)}
-                      >
-                        <img src={deleteIcon} alt="delete Icon" />
-                      </span>
-                    </div>
-                  ))}
+            ))}
+          </div>
+        </div>
+        <div className="create-typebot">
+          <div className="typebot-button" onClick={createTypeBot}>
+            <br />
+            <br />
+            <span className="plus-sign">+</span>
+            <br />
+            <br />
+            <br />
+            Create a typebot
+          </div>
+          <div className="form-names">
+            <div className="form-list">
+              {formNames.map((formName, index) => (
+                <div className="form-list-item" key={index}>
+                  <span onClick={() => goToForm(formName)}>{formName}</span>
+                  <span
+                    className="delete-form-icon"
+                    onClick={() => handleDeleteForm(formName)}
+                  >
+                    <img src={deleteIcon} alt="delete Icon" />
+                  </span>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
+        </div>
+      </div>
 
-          {isCreateFolder && (
-            <div className="createNewFolder">
-              <label htmlFor="createFolderId">Create New Folder</label>
-              <input
-                type="text"
-                id="createFolderId"
-                placeholder="Enter folder name"
-                value={newFolderName}
-                onChange={(e) => setNewFolderName(e.target.value)}
-              />
-              <div className="createNewFolder-buttons">
-                <div className="done-button" onClick={handleCreateFolder}>
-                  Done
-                </div>
-                <div className="center-line">|</div>
-                <div className="cancel-button" onClick={cancelButton}>
-                  Cancel
-                </div>
-              </div>
+      {isCreateFolder && (
+        <div className="createNewFolder">
+          <label htmlFor="createFolderId">Create New Folder</label>
+          <input
+            type="text"
+            id="createFolderId"
+            placeholder="Enter folder name"
+            value={newFolderName}
+            onChange={(e) => setNewFolderName(e.target.value)}
+          />
+          <div className="createNewFolder-buttons">
+            <div className="done-button" onClick={handleCreateFolder}>
+              Done
             </div>
-          )}
-
-          {isDeleteFolder && (
-            <div className="DeleteNewFolder">
-              <div id="DeleteFolderId">
-                Are you sure you want to delete this folder ?
-              </div>
-
-              <div className="DeleteNewFolder-buttons">
-                <div className="confirm-button" onClick={handleDeleteFolder}>
-                  Confirm
-                </div>
-                <div className="center-line">|</div>
-                <div className="cancel-button" onClick={cancelButton}>
-                  Cancel
-                </div>
-              </div>
+            <div className="center-line">|</div>
+            <div className="cancel-button" onClick={cancelButton}>
+              Cancel
             </div>
-          )}
-        </>
+          </div>
+        </div>
+      )}
+
+      {isDeleteFolder && (
+        <div className="DeleteNewFolder">
+          <div id="DeleteFolderId">
+            Are you sure you want to delete this folder ?
+          </div>
+
+          <div className="DeleteNewFolder-buttons">
+            <div className="confirm-button" onClick={handleDeleteFolder}>
+              Confirm
+            </div>
+            <div className="center-line">|</div>
+            <div className="cancel-button" onClick={cancelButton}>
+              Cancel
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
