@@ -187,19 +187,22 @@ function PostLogin() {
           <div className="form-names">
             <div className="form-list">
               {forms.map(({ formName, formId }, index) => (
-                <div
-                  className="form-list-item"
-                  key={index}
-                  onClick={() => goToForm(formId)}
-                >
-                  <span>{formName}</span>
-                  <span
+                <>
+                  <div
+                    className="form-list-item"
+                    key={index}
+                    onClick={() => goToForm(formId)}
+                  >
+                    <span>{formName}</span>
+                  </div>
+
+                  <img
+                    src={deleteIcon}
+                    alt="delete Icon"
                     className="delete-form-icon"
                     onClick={() => handleDeleteForm(formId)}
-                  >
-                    <img src={deleteIcon} alt="delete Icon" />
-                  </span>
-                </div>
+                  />
+                </>
               ))}
             </div>
           </div>
